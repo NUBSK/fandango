@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Documentation for Fandango audio player">
+    <meta name="keywords" content="Fandango, html5 audio player, player with transcription, vtt, jquery, responsive audio player, metadata, microdata, Dublin Core, Fandango documentation">
+    <title>Documentation | Fandango Audio Player</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57-precomposed.png">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" role="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./"><img src="img/fandango.jpg" title="Fandango logo" alt="Fandango logo"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="examples.html">Examples</a>
+                    </li>
+                    <li>
+                        <a class="current" href="docs.html">Docs</a>
+                    </li>
+                    <li>
+                        <a href="api.html">API</a>
+                    </li>
+                    <li>
+                        <a href="resources.html">Resources</a>
+                    </li>
+                    <li class="share" aria-label="Share">
+                        <span class="share st_sharethis_custom">SHARE</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="title" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>DOCUMENTATION</h1>
+                </div>
+                <div class="col-md-6">
+                    <ul class="breadcrumbs pull-right">
+                        <li>
+                            <a href="index.html" >Home</a>
+                            <span class="divider"> / </span>
+                        </li>
+                        <li class="active">Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ol>
+                        <li>
+                            <a href="#introduction">Introduction</a>
+                        </li>
+                        <li>
+                            <a href="#installation">Installation</a>
+                        </li>
+                        <li>
+                            <a href="#accessibility">Accessibility</a>
+                        </li>
+                        <li>
+                            <a href="#metadata">Metadata</a>
+                        </li>
+                        <li>
+                            <a href="#directories">Directory Structure</a>
+                        </li>
+                        <li>
+                            <a href="#seo">SEO</a>
+                        </li>
+                        <li>
+                            <a href="#webaudio">Web Audio API</a>
+                        </li>
+                        <li>
+                            <a href="#support">Browsser support</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-b main" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a name="introduction">&nbsp;</a>
+                    <h2 class="section-heading">Introduction</h2>
+                    <p>Fandango Audio Player is jQuery based streamer for audio files, initially developed for streaming of audio books from <a href="http://www.dlib.mk" title="Digital Library of Macedonia" target="_blank"> The Digital Library of Macedonia</a>. It uses jQuery and jQuery UI (both versions 1.9.1), Boostrap 3.3.0 for responsive layout and Font Awesome 3.2.1 for player controls. Additionally, it uses jQuery XML to JSON Plugin for parsing <span class="code">dublin_core.xml</span> and jQuery Hotkeys for keyboard control over the player.</p>
+                    <p>For full list of supported features, please check out <a href="api.html" title="API Reference Documentation">API Reference Documentation</a>.</p>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="installation"><br/></a>
+                    <h2 class="section-heading">Installation</h2>
+                    <p>Include CSS files in the <span class="code">&lt;head&gt;</span> of the document.</p>
+                    <pre>&lt;link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"&gt;<br/>&lt;link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css"&gt;<br/>&lt;!-- Your Theme of choice. Choose between Flat, Dark and Light. Default is LIGHT --&gt;<br/>&lt;link href="css/light.css" rel="stylesheet" type="text/css"&gt;</pre>
+                    <p>Include JavaScript files before the closing <span class="code">&lt;/body&gt;</span> tag.</p>
+                    <pre>&lt;!-- Load jQuery and jQuery UI --&gt;<br/>&lt;script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.min.js"&gt;<br/>&lt;script type="text/javascript" src="//code.jquery.com/ui/1.9.1/jquery-ui.min.js"&gt;<br/>&lt;!-- Additional plugins for Metadata and keyboard shortcuts --&gt;<br/>&lt;script type="text/javascript" src="js/jquery.hotkeys.js"&gt;<br/>&lt;script type="text/javascript" src="js/jquery.xml2json.js"&gt;<br/>&lt;!-- Only if you use transcription with VTT files --&gt;<br/>&lt;script type="text/javascript" src="js/vtt.js"&gt;</pre>
+                    <p>And finally load and activate the plugin.</p>
+                    <pre>&lt;!-- Load Fandango player --&gt;<br/>&lt;script type="text/javascript" src="js/fandango.min.js"&gt;<br/>&lt;!-- Initialize the player --&gt;<br/>&lt;script type="text/javascript"&gt;<br/> $(document).ready(function({<br/>   $('.audioPlayer').audioPlayer({<br/>   //your options go HERE<br/> });<br/>});</pre>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="accessibility">&nbsp;</a>
+                    <h2 class="section-heading">Accessibility</h2>
+                    <p>We worked very hard to make Fandango Audio pLayer as accessible as possible. It utilizes <span class="code">role</span> and <span class="code">aria</span> attributes extensively, that helps to make it more accessible when using screen readers. The player was tested in the Department for blind and visually impaired at national and University Library "St. Clement of Ohrid" - Macedonia.</p>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>                   
+                    <hr/>
+                    <a name="metadata">&nbsp;</a>
+                    <h2 class="section-heading">Metadata</h2>
+                    <p>Since this player was initially developed as DSpace plugin for streaming audio books, the directory structure along with file name and formating of XML document are per <a href="https://wiki.duraspace.org/display/DSDOC4x/Importing+and+Exporting+Items+via+Simple+Archive+Format" title="DSpace Simple Archive Format" target="_blank">DSPace 4.x Documentation</a>. The schema used is Qualified Dublin Core (DCMI - metadata terms) with custom field for narrators of audio books. You may use additional fields, but those will be ignored in the output. For full set of metadata terms see here: <a href="http://dublincore.org/documents/dcmi-terms/" title="DCMI Metadata Terms" target="_blank">http://dublincore.org/documents/dcmi-terms/</a></p>
+                    <p>Sample <span class="code">dublin_core.xml</span> file for audio book:</p>
+                    <pre>&lt;?xml version="1.0" encoding="utf-8" standalone="no"?&gt;
+&lt;dublin_core schema="dc"&gt;
+    &lt;dcvalue element="title" qualifier="none" language="en"&gt;The Adventures of Sherlock Holmes&lt;/dcvalue&gt;
+    &lt;dcvalue element="contributor" qualifier="author" language="en"&gt;Sir Arthur Conan Doyle&lt;/dcvalue&gt;
+    &lt;dcvalue element="contributor" qualifier="narrator" language="en"&gt;Mark Smith&lt;/dcvalue&gt;
+    &lt;dcvalue element="subject" qualifier="none" language="en"&gt;Action &amp; Adventure Fiction&lt;/dcvalue&gt;
+    &lt;dcvalue element="subject" qualifier="none" language="en"&gt;General Fiction&lt;/dcvalue&gt;
+    &lt;dcvalue element="subject" qualifier="none" language="en"&gt;Detective Fiction&lt;/dcvalue&gt;
+    &lt;dcvalue element="description" qualifier="none" language="en"&gt;Dr. Watson chronicles here some of the more interesting detective cases that he and his good friend, Mr. Sherlock Holmes, have encountered during their association. We see the cases unfold as he does, scratch our heads as does he while the evidence is collected, and then marvel at the impeccable observations, remarkable insight, and doggedness which Holmes displays as he teases apart the tangled clues.&lt;/dcvalue&gt;
+    &lt;dcvalue element="description" qualifier="tableofcontents" language="en"&gt;01. A Scandal in Bohemia;02. The Red-Headed League;03. A Case of Identity&lt;/dcvalue&gt;
+    &lt;dcvalue element="date" qualifier="issued" language=""&gt;2010-07-31&lt;/dcvalue&gt;
+    &lt;dcvalue element="publisher" qualifier="none" language="en"&gt;LibriVox&lt;/dcvalue&gt;
+    &lt;dcvalue element="language" qualifier="iso" language="en"&gt;en&lt;/dcvalue&gt;
+    &lt;dcvalue element="identifier" qualifier="uri" language=""&gt;http://www.example.com/YOUR_AUDIO_BOOK&lt;/dcvalue&gt;
+    &lt;dcvalue element="identifier" qualifier="isbn" language=""&gt;XXXXXXXXXXXXXXXX&lt;/dcvalue&gt;
+    &lt;dcvalue element="type" qualifier="none" language="en"&gt; Audio book&lt;/dcvalue&gt;
+&lt;/dublin_core&gt;</pre>
+                    <p>The playlist is generated from <span class="code">dc.description.tableofcontents</span> with semicolon as delimiter, in ordered list like this:</p>
+                    <pre>1. A Scandal in Bohemia
+2. The Red-Headed League
+3. A Case of Identity</pre>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="directories">&nbsp;</a>
+                    <h2 class="section-heading">Directory Structure</h2>
+                    <p>When the playlist is generated, it matches the first item from list with the first audio file in ascending order. If you want to use audio transcription, then the MP3 file and the matching VTT file must have same name. Here is a sample directory structure:</p>
+                    <pre>audio_files/
+├── book/
+│   ├── 0000001.mp3
+│   ├── 0000001.vtt
+│   ├── 0000002.mp3
+│   ├── 0000002.vtt
+│   ├── 0000003.mp3
+│   ├── 0000003.vtt
+│   └── dublin_core.xml
+└── music/
+    ├── 0000001.mp3
+    ├── 0000001.vtt
+    ├── 0000002.mp3
+    ├── 0000002.vtt
+    ├── 0000003.mp3
+    ├── 0000003.vtt
+    └── dublin_core.xml</pre>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="seo">&nbsp;</a>
+                    <h2 class="section-heading">SEO</h2>
+                    <p>Fandango is a Search engine Friendly audio player due to parsing of metadata explained above. If <span class="code">pageMeta: true</span> and <span class="code">microdata: true</span>, the HTML output should look like this:</p>
+                    <p>For HTML Head Elements:</p>
+                    <pre>&lt;title&gt;The Adventures of Sherlock Holmes by Sir Arthur Conan Doyle&lt;/title&gt;
+&lt;link rel="canonical" href="http://www.example.com/YOUR_AUDIO_BOOK" /&gt;
+&lt;meta name="description" content="Dr. Watson chronicles here some of the more interesting detective cases that he and his good friend, Mr. Sherlock Holmes, have encountered during their association. We see the cases unfold as he does, scratch our heads as does he while the evidence is collected, and then marvel at the impeccable observations, remarkable insight, and doggedness which Holmes displays as he teases apart the tangled clues."&gt;
+&lt;meta name="keywords" content="Action &amp; Adventure Fiction, General Fiction, Detective Fiction"&gt;</pre>
+                    <p>For Microdata:</p>
+                    <pre>&lt;div itemscope itemtype="http://schema.org/Audiobook"&gt;
+    &lt;p&gt;Title: &lt;span itemprop="title"&gt;The Adventures of Sherlock Holmes&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;Author: &lt;span itemprop="author"&gt;Sir Arthur Conan Doyl&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;Narrator: &lt;span itemprop="readBy"&gt;Mark Smith&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;ISBN: &lt;span itemprop="isbn"&gt;XXXXXXXXXXXXXXXX&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span itemprop="datePublished"&gt;2010-07-31&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span itemprop="publisher"&gt;LibriVox&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
+                    <p class="alert alert-warning alert-fixed-top"><strong>NOTICE: At this moment only microdata profile for Audio books is supported. Other profiles are on our TO DO list.</strong></p>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="webaudio">&nbsp;</a>
+                    <h2 class="section-heading">Web Audio API</h2>
+                    <p>Speech recognition is done using Web Audio API. For optimal results there are few things to consider: microphone quality, network latency, pronunciation etc... Browser support is also very limited. To enable this feature, use: <pre>webAudio: true,</pre></p>
+                    <p class="alert alert-danger alert-fixed-top"><strong>WARNING: This feature is in experimental stage. Use at your own RISK!!!</strong></p>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                    <hr/>
+                    <a name="support">&nbsp;</a>
+                    <h2 class="section-heading">Browser support</h2>
+                    <ul>
+                        <li>Internet Explorer 8+</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Google Chrome</li>
+                        <li>Opera</li>
+                        <li>Safari</li>
+                        <li>Safari iOS</li>
+                    </ul>
+                    <div class="clearfix"><a href="#top" class="pull-right">top</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-a center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango" class="btn btn-default btn-lg" target="_blank" title="Download Fandango audio player"><i class="icon icon-download-alt" aria-hidden="true"></i> <span class="network-name">Download</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango/fork" class="btn btn-default btn-lg" target="_blank" title="Fork it on GitHub"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Fork it</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>GET CONNECTED:</h2>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/dlibmk" class="btn btn-default btn-lg" target="_blank" role="button"><i class="icon icon-twitter" aria-hidden="true"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/dlib.mk" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-facebook" aria-hidden="true"></i> <span class="network-name">Facebook</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Github</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer role="complementary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="examples.html">Examples</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="docs.html">Docs</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="api.html">API</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="resources.html">Resources</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; <a href="http://nubsk.edu.mk" title="National and University Library St. Clement of Ohrid - Macedonia" target="_blank">National and University Library St. Clement of Ohrid - Macedonia</a> 2014. All Rights Reserved<br/><a href="http://www.dlib.mk" title="Digital Library of Macedonia" target="_blank">Digital Library of Macedonia</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "your-publisher-id-share-this", onhover: false, doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</body>
+</html>
