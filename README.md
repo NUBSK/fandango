@@ -1,5 +1,7 @@
 # Fandango
-Award winning audio player
+![alt text](https://github.com/NUBSK/fandango/blob/master/img/fandango.jpg "Fandango Audio Player")
+
+**_Award winning audio player_**
 ## About this project
 Fandango was a project that was voted as a winning solution on [CulTIP Challenges 2014](http://www.britishcouncil.mk/en/programmes/arts/innovative-technology "CulTIP Challenges 2014"), sponsored by British Council Macedonia. The idea was submitted by [National and University Library "St. Clement of Ohrid" - Macedonia](http://nubsk.edu.mk "National and University Library 'St. Clement of Ohrid' - Macedonia") for the needs of [Digital Library of Macedonia](http://www.dlib.mk "Digital Library of Macedonia") website. The final product was developed with support from Faculty of Computer Science and Engineering ([FINKI](http://www.finki.ukim.mk/en/home "Faculty of Computer Science and Engineering")).
 ## Developed by
