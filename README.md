@@ -1,7 +1,7 @@
 # Fandango
 Award winning audio player
 ## About this project
-Fandango was a project that was voted as a winning solution on [CulTIP Challenges 2014](http://www.britishcouncil.mk/en/programmes/arts/innovative-technology), sponsored by [British Council Macedonia](http://www.britishcouncil.mk/en). The idea was submitted by [National and University Library "St. Clement of Ohrid" - Macedonia](http://nubsk.edu.mk) for the needs of [Digital Library of Macedonia](http://www.dlib.mk) website. The final product was developed with support from Faculty of Computer Science and Engineering ([FINKI](http://www.finki.ukim.mk/en/home)).
+Fandango was a project that was voted as a winning solution on [CulTIP Challenges 2014](http://www.britishcouncil.mk/en/programmes/arts/innovative-technology "CulTIP Challenges 2014"), sponsored by British Council Macedonia. The idea was submitted by [National and University Library "St. Clement of Ohrid" - Macedonia](http://nubsk.edu.mk "National and University Library 'St. Clement of Ohrid' - Macedonia") for the needs of [Digital Library of Macedonia](http://www.dlib.mk "Digital Library of Macedonia") website. The final product was developed with support from Faculty of Computer Science and Engineering ([FINKI](http://www.finki.ukim.mk/en/home "Faculty of Computer Science and Engineering")).
 ## Developed by
 [Aleksandar Stojanov](https://www.linkedin.com/in/losisin) - UX/UI design, custom themes, microdata and accessibility markup (National and University Library "St. Clement of Ohrid" - Macedonia)
 
@@ -16,4 +16,3 @@ Fandango was a project that was voted as a winning solution on [CulTIP Challenge
 7. Microdata for Audio Books
 8. Microdata for Music Album
 9. Support for transcription with VTT files (parsing for songs and novels)
-## Browser Support
