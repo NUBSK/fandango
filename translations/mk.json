@@ -1,0 +1,29 @@
+{
+	"description": {
+		"title": "Наслов:",
+		"altTitle": "Алтернативен наслов:",
+		"author": "Автор:",
+		"publisher": "Издавач:",
+		"narrator": "Наратор:",
+		"dateIssued": "Дата на издавање:",
+		"isbn": "ISBN:"
+	},
+	"playerButtons":{
+		"play":"Пушти",
+		"pause":"Пауза",
+		"stop":"Стоп",
+		"prevTrack":"Следно",
+		"nextTrack":"Претходно",
+		"rewind":"Назад",
+		"forward":"Напред",
+		"volumeUp":"Зголеми глас",
+		"volumeDown":"Намали глас",
+		"mute":"Исклучи глас",
+		"help":"Помош",
+		"listen": "Говорни команди"
+	},
+	"modal":{
+		"needHelp": "Треба помош?",
+		"shortcuts": "Кратенки:"
+	}
+}

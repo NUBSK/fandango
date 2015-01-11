@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Examples of usage and demo pages for Fandango audio player">
+    <meta name="keywords" content="Fandango, html5 audio player, player with transcription, vtt, jquery, responsive audio player, metadata, microdata, Dublin Core, Fandango examples">
+    <title>Examples | Fandango Audio Player</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57-precomposed.png">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" role="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./"><img src="img/fandango.jpg" title="Fandango logo" alt="Fandango logo"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="current" href="examples.html">Examples</a>
+                    </li>
+                    <li>
+                        <a href="docs.html">Docs</a>
+                    </li>
+                    <li>
+                        <a href="api.html">API</a>
+                    </li>
+                    <li>
+                        <a href="resources.html">Resources</a>
+                    </li>
+                    <li class="share" aria-label="Share">
+                        <span class="share st_sharethis_custom">SHARE</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>EXAMPLES</h1>
+                </div>
+                <div class="col-md-6">
+                    <ul class="breadcrumbs pull-right">
+                        <li>
+                            <a href="index.html" >Home</a>
+                            <span class="divider"> / </span>
+                        </li>
+                        <li class="active">Examples</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-b main" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-heading">Themes</h2>
+                    <ul>
+                    	<li>
+                    		<a href="examples/flat.html" title="Flat theme">Flat Theme</a>
+                    	</li>
+                    	<li>
+                    		<a href="examples/dark.html" title="Dark theme">Dark Theme</a> (for websites with light background)
+                    	</li>
+                    	<li>
+                    		<a href="examples/light.html" title="Light theme">Light Theme</a> (for websites with dark background)
+                    	</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                	<hr/>
+                    <h2 class="section-heading">Interface examples</h2>
+                    <p>Visual presentation of the audio player</p>
+                    <ul>
+                    	<li>
+                    		<a href="examples/simple.html" title="Simple player">Simple player</a> (single track)
+                    	</li>
+                    	<li>
+                    		<a href="examples/playlist.html" title="Simple player with playlist">Simple player with playlist</a>
+                    	</li>
+                        <li>
+                            <a href="examples/multiple.html" title="Multiple audio players">Multiple audio players</a>
+                        </li>
+                        <li>
+                            <a href="examples/progress-bar.html" title="Audio player with progress bar">Audio player with progress bar</a>
+                        </li>
+                        <li>
+                            <a href="examples/songs.html" title="Audio player with transcription for songs">Audio player with transcription for songs</a> (default parsing of VTT files)
+                        </li>
+                        <li>
+                            <a href="examples/novel.html" title="Audio player with transcription for books">Audio player with transcription for books</a>
+                        </li>
+                        <li>
+                            <a href="examples/web-audio.html" title="Web Audio API">Web Audio API</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                	<hr/>
+                    <h2 class="section-heading">Under The Hood</h2>
+                    <p>You need to check the source code for the following examples to see the changes. Press <strong>F12</strong> or <strong>right click &#8594; Inspect element</strong></p>
+                    <ul>
+                    	<li>
+                    		<a href="examples/page-meta.html" title="HTML head elements">HTML head Elements</a>
+                    	</li>
+                        <li>
+                            <a href="examples/microdata-books.html" title="Microdata">Microdata for Audio books</a>
+                        </li>
+                        <li>
+                            <a href="examples/microdata-music.html" title="Microdata">Microdata for Music Album</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-a center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango" class="btn btn-default btn-lg" target="_blank" title="Download Fandango audio player"><i class="icon icon-download-alt" aria-hidden="true"></i> <span class="network-name">Download</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango/fork" class="btn btn-default btn-lg" target="_blank" title="Fork it on GitHub"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Fork it</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>GET CONNECTED:</h2>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/dlibmk" class="btn btn-default btn-lg" target="_blank" role="button"><i class="icon icon-twitter" aria-hidden="true"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/dlib.mk" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-facebook" aria-hidden="true"></i> <span class="network-name">Facebook</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Github</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="examples.html">Examples</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="docs.html">Docs</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="api.html">API</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="resources.html">Resources</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; <a href="http://nubsk.edu.mk" title="National and University Library St. Clement of Ohrid - Macedonia" target="_blank">National and University Library St. Clement of Ohrid - Macedonia</a> 2014. All Rights Reserved<br/><a href="http://www.dlib.mk" title="Digital Library of Macedonia" target="_blank">Digital Library of Macedonia</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "your-publisher-id-share-this", onhover: false, doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</body>
+</html>

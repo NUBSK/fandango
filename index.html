@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Accessible and SEO audio player build on jQuery and Boostrap. Developed by Digital library of Macedonia (http://dlib.mk).">
+    <meta name="keywords" content="Fandango, html5 audio player, player with transcription, vtt, jquery, responsive audio player, metadata, microdata, Dublin Core">
+    <title>Home | Fandango Audio Player</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57-precomposed.png">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./"><img src="img/fandango.jpg" title="Fandango logo" alt="Fandango logo"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="examples.html">Examples</a>
+                    </li>
+                    <li>
+                        <a href="docs.html">Docs</a>
+                    </li>
+                    <li>
+                        <a href="api.html">API</a>
+                    </li>
+                    <li>
+                        <a href="resources.html">Resources</a>
+                    </li>
+                    <li class="share" aria-label="Share">
+                        <span class="share st_sharethis_custom">SHARE</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>FANDANGO</h1>
+                        <h3>award winning audio player</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="https://github.com/NUBSK/fandango" class="btn btn-default btn-lg" target="_blank" title="Download Fandango audio player"><i class="icon icon-download-alt" aria-hidden="true"></i> <span class="network-name">Download</span></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/NUBSK/fandango/fork" class="btn btn-default btn-lg" target="_blank" title="Fork it on GitHub"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Fork it</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-b center features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Features</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 features">
+                	<i class="icon icon-html5 icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>HTML5</h5>
+                    <p><em>Native html5 player</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-plus-sign-alt icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>Accessibility</h5>
+                    <p><em>Assistive technologies support</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-desktop icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>Responsive design</h5>
+                    <p><em>Adapt to different screen sizes</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-microphone icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>Web Audio API</h5>
+                    <p><em>Control with voice</em></p>
+                </div>
+            </div>
+
+            <div class="row lastrow">
+                <div class="col-lg-3 features">
+                	<i class="icon icon-sitemap icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>Metadata</h5>
+                    <p><em>DCMI Metadata Terms</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-search icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>Microdata</h5>
+                    <p><em>Search Engine Friendly</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-gears icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>API</h5>
+                    <p><em>Features rich API</em></p>
+                </div>
+                <div class="col-lg-3 features">
+                	<i class="icon icon-user icon-5x" aria-hidden="true"></i>
+                    <div class="clearfix"></div>
+                    <h5>User friendly</h5>
+                    <p><em>Easy control &amp; navigation</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-a center" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">About</h2>
+                    <p class="lead">Fandango was a project that was voted as a winning solution on <a href="http://www.britishcouncil.mk/en/programmes/arts/innovative-technology" target="_blank" title="CulTIP Challenges 2014">CulTIP Challenges 2014</a>, sponsored by British Council Macedonia. The idea was submitted by National and University Library "St. Clement of Ohrid" - Macedonia in partnership with MASIT. The final product was developed with support from Faculty of Computer Science and Engineering (FINKI).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section-a center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango" class="btn btn-default btn-lg" target="_blank" title="Download Fandango audio player"><i class="icon icon-download-alt" aria-hidden="true"></i> <span class="network-name">Download</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK/fandango/fork" class="btn btn-default btn-lg" target="_blank" title="Fork it on GitHub"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Fork it</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>GET CONNECTED:</h2>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/dlibmk" class="btn btn-default btn-lg" target="_blank" role="button"><i class="icon icon-twitter" aria-hidden="true"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/dlib.mk" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-facebook" aria-hidden="true"></i> <span class="network-name">Facebook</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/NUBSK" class="btn btn-default btn-lg" role="button" target="_blank"><i class="icon icon-github" aria-hidden="true"></i> <span class="network-name">Github</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="../">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="../examples.html">Examples</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="../docs.html">Docs</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="../api.html">API</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="../resources.html">Resources</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; <a href="http://nubsk.edu.mk" title="National and University Library St. Clement of Ohrid - Macedonia" target="_blank">National and University Library St. Clement of Ohrid - Macedonia</a> 2014. All Rights Reserved<br/><a href="http://www.dlib.mk" title="Digital Library of Macedonia" target="_blank">Digital Library of Macedonia</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "your-publisher-id-share-this", onhover: false, doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</body>
+</html>

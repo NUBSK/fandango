@@ -1,0 +1,29 @@
+{
+	"description": {
+		"title": "Title:",
+		"altTitle": "Alternative title:",
+		"author": "Author:",
+		"publisher": "Publisher:",
+		"narrator": "Narrator:",
+		"dateIssued": "Date issued:",
+		"isbn": "ISBN:"
+	},
+	"playerButtons":{
+		"play":"Play",
+		"pause":"Pause",
+		"stop":"Stop",
+		"prevTrack":"Previous",
+		"nextTrack":"Next",
+		"rewind":"Back",
+		"forward":"Forward",
+		"volumeUp":"Volume up",
+		"volumeDown":"Volume down",
+		"mute":"Mute",
+		"help":"Help",
+		"listen": "Speak commands"
+	},
+	"modal":{
+		"needHelp": "Need help?",
+		"shortcuts": "Shortcuts:"
+	}
+}
