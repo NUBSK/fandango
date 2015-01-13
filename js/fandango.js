@@ -1,36 +1,11 @@
 /*
  * jQuery Simple audio stream player
- * Copyright 2014, Dejan Mladenovski
+ * Copyright 2014, National and Universit Library "St. Clement of Ohrid" - Skopje, Macedonia
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * 
  * This plugin is dependant on jquey 1.9.1 (for IE compatibility), jquery ui 1.9.1, jquery hotkeys, jquery XML2JSON, Mozilla's vtt 
  *
  */
-
-
-/*	Default shortcut keys
-* 	play/pause - space
-*	stop - s/escape
-*	forward - f/arrow right
-*	rewind - r/arrow left
-*	volume up - +/arrow up
-*	volume down - -/arrow down
-*	mute - m
-*	next track - ctrl+arrow left
-*	previous - ctrl+arrow right
-
-/*	Default speech commands
-* 	play
-* 	pause
-*	stop
-*	forward
-*	rewind
-*	volume up
-*	volume down
-*	mute
-*	next track
-*	previous track
-*/
 
 (function($){
 	$.fn.fandango = function(options){
