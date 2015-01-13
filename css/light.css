@@ -74,10 +74,9 @@
     padding-top: .5em
 }
 
-.icon-microphone:focus {    
+.microphone-active.icon-microphone:focus {    
     background:#333;
-    color: #fff;
-    outline:none;
+    color:#fff;
 }
 
 .audio {
