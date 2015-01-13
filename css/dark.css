@@ -41,7 +41,8 @@
     background: #fff;
     color: #333;
     padding: 25px 15px 15px;
-    border-left: 3px solid rgba(0,0,0,0);
+    border-left: 10px solid #000;
+    border-right: 10px solid #000;
 }
 
 .fandango-transcript {
@@ -79,9 +80,9 @@
     padding-top: .5em
 }
 
-.icon-microphone:focus {    
-    background:#333;
-    color: #fff;
+.icon-microphone:focus.microphone-active {    
+    background:#fff;
+    color: #333;
     outline:none;
 }
 
