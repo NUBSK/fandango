@@ -151,10 +151,14 @@
                     active.removeClass('active');
                     var nextTrack = $(ol.children('li[data-pos=' + nextPos + ']')[0]);
                     var nextLink = nextTrack.attr('data-source');
+                    
+                    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
+				    nextTrack.children('.time-display').addClass('time-display-active');
+                    
                     nextTrack.addClass('active');
-                    var isPlaying = false;
-				    if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
-				    changeSource(nextLink, isPlaying);
+        //             var isPlaying = false;
+				    // if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
+				    changeSource(nextLink, true);
 				    createTranscriptionInformation(meta.vttSource[nextPos]);
 					break;
 				case 'prevTrack': 
@@ -169,10 +173,14 @@
 				    active.removeClass('active');
 				    var prevTrack = $(ol.children('li[data-pos=' + prevPos + ']')[0]);
 				    var prevLink = prevTrack.attr('data-source');
+
+				    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
+				    prevTrack.children('.time-display').addClass('time-display-active');
+
 				    prevTrack.addClass('active');
-				    var isPlaying = false;
-				    if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
-				    changeSource(prevLink, isPlaying);
+				    // var isPlaying = false;
+				    // if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
+				    changeSource(prevLink, true);
 				    createTranscriptionInformation(meta.vttSource[prevPos]);
 				    break;
                 case 'help':
@@ -262,7 +270,7 @@
 								'<h4 class="modal-title">' + i18n.t('modal.needHelp') + '</h4>' +
 							'</div>' +
 							'<div class="modal-body"></div>' +
-							'<div class="modal-footer"></div>' +
+							'<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
@@ -295,6 +303,8 @@
 
 			progressTime.text(ctTime + ' / ' + dTime);
 
+			$('.time-display-active small').text(ctTime + ' / ' + dTime);
+
 			var progressBar = $('.fandango-progressbar-slider');
 			progressBar.val(currentTime);
 
@@ -303,7 +313,7 @@
 
 		var trackEndedEvent = function(){
 			self.action('nextTrack');
-			self.action('play');
+			// self.action('play');
 		};
 
 		var audioLoadedMetadata = function(){
@@ -539,12 +549,25 @@
 		var createChapterPlaylist = function(){
 			if(!settings.trackContainer) return;
 		    var trackContainer = $('.fandango-playlist');
-		    var list = $('<ol class="tracks" itemscope itemtype="http://schema.org/ItemList"><meta itemprop="name" content="' + meta.title + '" /><meta itemprop="author" content="' + meta.author.join(', ') + '" /><meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" /></ol>');
+		    var list = '';
+		    if(settings.microdata === 1 || settings.microdata === 2){
+		    	list = $('<ol class="tracks" itemscope itemtype="http://schema.org/ItemList"><meta itemprop="name" content="' + meta.title + '" /><meta itemprop="author" content="' + meta.author.join(', ') + '" /><meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" /></ol>');	
+		    }
+		    else{
+		    	list = $('<ol class="tracks"></ol>');
+		    }
+		    
 		    trackContainer.append(list);
 		    $.each(meta.source, function (index, source) {
-		        var li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '"><span itemprop="itemListElement">' + meta.toc[index] + '</span></li>');
+		    	var li = '';
+		    	if(settings.microdata === 1 || settings.microdata === 2){
+		    		li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '"><span itemprop="itemListElement">' + meta.toc[index] + '</span><span class="pull-right time-display"><small></small></span></li>');
+			    }
+			    else{
+			    	li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '">' + meta.toc[index] + '<span class="pull-right time-display"><small></small></span></li>');
+			    }
                 if (index == 0) {
-                    li.addClass('active');
+                    li.addClass('active').children('.time-display').addClass('time-display-active');
                 }
                 li.click(function(){
         //         	var audio = $('.fandango-player').children('audio')[0];
@@ -554,8 +577,10 @@
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
+				    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
 				    active.removeClass('active');
 				    li.addClass('active');
+				    li.children('.time-display').addClass('time-display-active');
                 });
 		        list.append(li);
 		    });
