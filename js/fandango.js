@@ -524,10 +524,10 @@
 		var createChapterPlaylist = function(){
 			if(!settings.trackContainer) return;
 		    var trackContainer = $('.fandango-playlist');
-		    var list = $('<ol class="tracks"></ol>');
+		    var list = $('<ol class="tracks" itemscope itemtype="http://schema.org/ItemList"><meta itemprop="name" content="' + meta.title + '" /><meta itemprop="author" content="' + meta.author.join(', ') + '" /><meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" /></ol>');
 		    trackContainer.append(list);
 		    $.each(meta.source, function (index, source) {
-		        var li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '">' + meta.toc[index] + '</li>');
+		        var li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '"><span itemprop="itemListElement">' + meta.toc[index] + '</span></li>');
                 if (index == 0) {
                     li.addClass('active');
                 }
