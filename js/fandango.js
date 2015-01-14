@@ -245,14 +245,28 @@
 		};
 
 	    var openHelpModal = function() {
-	        var modal = $('<div class="help-modal" title="' + i18n.t('modal.needHelp') + '"></div>');
-	        $.each(settings.shortcuts, function(key, shortcut){
-	        	modal.append('<span><strong>' + i18n.t('playerButtons.' + key) + ': ' + shortcut + '</strong></span><br />');
-	        });
-	        modal.dialog({
-			      resizable: false,
-			      modal: true
-			    });
+	        // var modal = $('<div class="help-modal" title="' + i18n.t('modal.needHelp') + '"></div>');
+	        // $.each(settings.shortcuts, function(key, shortcut){
+	        // 	modal.append('<span><strong>' + i18n.t('playerButtons.' + key) + ': ' + shortcut + '</strong></span><br />');
+	        // });
+	      //   modal.dialog({
+			    //   resizable: false,
+			    //   modal: true
+			    // });
+	        var modalDOM = 
+	        	'<div class="modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
+	        		'<div class="modal-dialog">' +
+						'<div class="modal-content">' +
+							'<div class="modal-header">' +
+								'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+								'<h4 class="modal-title">' + i18n.t('modal.needHelp') + '</h4>' +
+							'</div>' +
+							'<div class="modal-body"></div>' +
+							'<div class="modal-footer"></div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
+	        $('body').append(modalDOM);
 	    };
 
 		var controlClick = function(e){		
@@ -717,6 +731,7 @@
 					if(!settings.descriptionContainer) return;
 					$('.fandango-description').i18n();
 				});
+				openHelpModal();
 			});
 		};
 
