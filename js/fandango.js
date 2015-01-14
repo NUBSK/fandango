@@ -266,12 +266,16 @@
 			var currentTime = au.currentTime;
 			var duration = au.duration;
 
-			var ctMinutes = parseInt(currentTime / 60) % 60;
-			var ctSeconds = parseInt(currentTime % 60);
+			// var ctMinutes = parseInt(currentTime / 60) % 60;
+			// var ctSeconds = parseInt(currentTime % 60);
+			var ctMinutes = Math.floor(parseInt(currentTime / 60));
+			var ctSeconds = parseInt(currentTime) - ctMinutes*60;
 			var ctTime = (ctMinutes < 10 ? "0" + ctMinutes : ctMinutes) + ":" + (ctSeconds  < 10 ? "0" + ctSeconds : ctSeconds);
 
-			var dMinutes = parseInt(duration / 60) % 60;
-			var dSeconds = parseInt(duration % 60);
+			// var dMinutes = parseInt(duration / 60) % 60;
+			// var dSeconds = parseInt(duration % 60);
+			var dMinutes = Math.floor(parseInt(duration / 60));
+			var dSeconds = parseInt(duration) -dMinutes*60;
 			var dTime = dMinutes + ':' + dSeconds;
 			var dTime = (dMinutes < 10 ? "0" + dMinutes : dMinutes) + ":" + (dSeconds  < 10 ? "0" + dSeconds : dSeconds);
 
