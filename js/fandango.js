@@ -113,11 +113,13 @@
 				case 'volumeUp': 
 					if(audio.volume < 1.0)
 						audio.volume+=0.1;
+					audio.muted = false;
 					$('.icon-volume-up').addClass('icon-hover').removeClass('icon-hover',500,'linear');
 					break;
 				case 'volumeDown': 
 					if(audio.volume > 0)
 						audio.volume-=0.1;
+					audio.muted = false;
 					$('.icon-volume-down').addClass('icon-hover').removeClass('icon-hover',500,'linear');
 					break;
 				case 'mute': 
