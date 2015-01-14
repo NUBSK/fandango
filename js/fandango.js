@@ -341,7 +341,8 @@
 				if(time>start && time< end){
 					cues.removeClass('active');
 					el.addClass('active');
-					$('.fandango-transcript').scrollTop(el.offset().top + scroll_top);
+					// $('.fandango-transcript').scrollTop(el.offset().top + scroll_top);
+					$('.fandango-transcript').scrollTo(el);
 				}
 			});
 		};
