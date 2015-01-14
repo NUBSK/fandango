@@ -649,7 +649,7 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-8"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 pull-right fandango-status"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 pull-right fandango-status">Waiting</div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
@@ -660,7 +660,7 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-8"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull fandango-status"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull fandango-status">Waiting</div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
