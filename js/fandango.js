@@ -532,10 +532,10 @@
                     li.addClass('active');
                 }
                 li.click(function(){
-                	var audio = $('.fandango-player').children('audio')[0];
-                	var isPlaying = false;
-				    if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
-				    changeSource(source, isPlaying);
+        //         	var audio = $('.fandango-player').children('audio')[0];
+        //         	var isPlaying = false;
+				    // if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
+				    changeSource(source, true);
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
