@@ -558,7 +558,7 @@
 		};
 
 		var createTranscriptionInformation = function(source){
-			if(!settings.transcriptContainer) return;
+			if(!settings.transcriptContainer || settings.microdata !== 1) return;
 			$.ajax({url: source}).success(function(data){
                 var parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
                 var cues = [];
