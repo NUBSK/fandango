@@ -6,7 +6,8 @@
 		"publisher": "Publisher:",
 		"narrator": "Narrator:",
 		"dateIssued": "Date issued:",
-		"isbn": "ISBN:"
+		"isbn": "ISBN:",
+		"artist": "Artist"
 	},
 	"playerButtons":{
 		"play":"Play",

@@ -6,7 +6,8 @@
 		"publisher": "Издавач:",
 		"narrator": "Наратор:",
 		"dateIssued": "Дата на издавање:",
-		"isbn": "ISBN:"
+		"isbn": "ISBN:",
+		"artist": "Изведувач"
 	},
 	"playerButtons":{
 		"play":"Пушти",

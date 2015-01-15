@@ -542,7 +542,7 @@
 					$('.fandango-description').append('<p><strong data-i18n="description.title"></strong><span itemprop="name"> ' + meta.title + '</span></p>');
 				}
 				if(meta.author !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.author"></strong><span itemprop="byartist"> ' + meta.author.join(', ') + '</span></p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.artist"></strong><span itemprop="byartist"> ' + meta.author.join(', ') + '</span></p>');
 				}
 				if(meta.publisher !== ''){
 					$('.fandango-description').append('<p><strong data-i18n="description.publisher"></strong><span itemprop="publisher"> ' + meta.publisher + '</span></p>');
