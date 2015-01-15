@@ -11,7 +11,55 @@
 	$.fn.fandango = function(options){
 		var self = this;
 
-		var icons = ['fast-backward', 'backward', 'play', 'pause', 'stop', 'forward', 'fast-forward', 'volume-off', 'volume-down', 'volume-up', 'question-sign', 'microphone'];
+		var icons = [
+			{
+				label: 'fast-backward',
+				position: 'left'
+			}, 
+			{
+				label: 'backward',
+				position: 'left'
+			}, 
+			{
+				label:'play',
+				position: 'left'
+			}, 
+			{
+				label:'pause',
+				position: 'left'
+			}, 
+			{
+				label:'stop',
+				position: 'left'
+			}, 
+			{
+				label:'forward',
+				position: 'left'
+			}, 
+			{
+				label:'fast-forward',
+				position: 'left'
+			}, 
+			{
+				label:'volume-off',
+				position: 'right'
+			}, 
+			{
+				label:'volume-down',
+				position: 'right'
+			}, 
+			{
+				label:'volume-up',
+				position: 'right'
+			}, 
+			{
+				label:'question-sign',
+				position: 'right'
+			}, 
+			{
+				label:'microphone',
+				position: 'right'
+			}];
 		var controls = ['prevTrack', 'rewind', 'play', 'play', 'stop', 'forward', 'nextTrack', 'mute', 'volumeDown', 'volumeUp', 'help', 'listen'];
 
 		window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
@@ -70,8 +118,8 @@
 					if(audio !== undefined && !audio.paused && audio.duration > 0){
 						//audio is playing, pause it
 						audio.pause();
-						$('.fandango-player').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
-						var button = $('.fandango-player').children('.icon-play');
+						$('.fandango-player .fandango-player-controls').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
+						var button = $('.fandango-player .fandango-player-controls').children('.icon-play');
 						button.addClass('icon-pause').addClass('active').attr('aria-pressed', 'true').removeClass('icon-play');
 						button.attr('title', i18n.t('playerButtons.pause'));
 						$('.fandango-status').html('Paused');
@@ -79,15 +127,15 @@
 					else {
 						//audio is paused, start playing
 						audio.play();
-						$('.fandango-player').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
-						if($('.fandango-player').children('.icon-play').length > 0){
+						$('.fandango-player .fandango-player-controls').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
+						if($('.fandango-player .fandango-player-controls').children('.icon-play').length > 0){
 							//init play press
-							var button = $('.fandango-player').children('.icon-play');
+							var button = $('.fandango-player .fandango-player-controls').children('.icon-play');
 							button.addClass('active').attr('aria-pressed', 'true');
 							button.attr('title', i18n.t('playerButtons.play'));
 						}
 						else{
-							var button = $('.fandango-player').children('.icon-pause');
+							var button = $('.fandango-player .fandango-player-controls').children('.icon-pause');
 							button.addClass('icon-play').addClass('active').attr('aria-pressed', 'true').removeClass('icon-pause');
 							button.attr('title', i18n.t('playerButtons.play'));
 						}
@@ -98,8 +146,8 @@
 				case 'stop': 
 					audio.pause();
 					audio.currentTime = 0;
-					$('.fandango-player').children('.icon.active').removeClass('active').attr('aria-pressed', 'false');
-					$('.fandango-player').children('.icon-stop').addClass('active').attr('aria-pressed', 'true');
+					$('.fandango-player .fandango-player-controls').children('.icon.active').removeClass('active').attr('aria-pressed', 'false');
+					$('.fandango-player .fandango-player-controls').children('.icon-stop').addClass('active').attr('aria-pressed', 'true');
 					$('.fandango-status').html('Stopped');
 					break;
 				case 'forward':
@@ -387,17 +435,25 @@
 
 		var createAudioControls = function(){
 			var audioContainer = $('.fandango-player');
+			audioContainer.append($('<div class="fandango-player-controls fandango-left-controls pull-left"></div>'));
+			audioContainer.append($('<div class="fandango-player-controls fandango-right-controls pull-right"></div>'));
 			$.each(icons, function(i,e){
-				if(e !== 'pause'){
-					if(e === 'microphone'){
+				if(e.label !== 'pause'){
+					if(e.label === 'microphone'){
 						if(window.SpeechRecognition !== null){
-							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e + '" data-control="' + controls[i] + '"></button>';
-							var icon = $(elem).click(controlClick).appendTo(audioContainer);
+							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+							if(e.position === 'left')
+								var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+							else
+								var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
 						}
 					}
 					else{
-						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e + '" data-control="' + controls[i] + '"></button>';
-						var icon = $(elem).click(controlClick).appendTo(audioContainer);
+						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						if(e.position === 'left')
+							var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+						else
+							var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
 					}
 				}
 			});
