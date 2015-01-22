@@ -10,6 +10,8 @@
 (function($){
 	$.fn.fandango = function(options){
 		var self = this;
+		
+		var slider = null;
 
 		var icons = [
 			{
@@ -200,11 +202,9 @@
                     var nextTrack = $(ol.children('li[data-pos=' + nextPos + ']')[0]);
                     var nextLink = nextTrack.attr('data-source');
                     
-                    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
-				    nextTrack.children('.time-display').addClass('time-display-active');
-                    
                     nextTrack.addClass('active');
-        //             var isPlaying = false;
+
+        			// var isPlaying = false;
 				    // if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
 				    changeSource(nextLink, true);
 				    createTranscriptionInformation(meta.vttSource[nextPos]);
@@ -221,9 +221,6 @@
 				    active.removeClass('active');
 				    var prevTrack = $(ol.children('li[data-pos=' + prevPos + ']')[0]);
 				    var prevLink = prevTrack.attr('data-source');
-
-				    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
-				    prevTrack.children('.time-display').addClass('time-display-active');
 
 				    prevTrack.addClass('active');
 				    // var isPlaying = false;
@@ -351,11 +348,10 @@
 
 			progressTime.text(ctTime + ' / ' + dTime);
 
-			$('.time-display-active small').text(ctTime + ' / ' + dTime);
+			slider.slider('value', currentTime);
 
-			var progressBar = $('.fandango-progressbar-slider');
-			progressBar.val(currentTime);
-
+			$(slider.children('a')[0]).attr('aria-valuenow', currentTime);
+			
 			updateTranscriptHighlight(au.currentTime);
 		};
 
@@ -380,15 +376,22 @@
 			var dTime = (dMinutes < 10 ? "0" + dMinutes : dMinutes) + ":" + (dSeconds  < 10 ? "0" + dSeconds : dSeconds);
 
 			var progressBar = $('.fandango-progressbar-slider');
-			progressBar.attr('min', 0);
-			progressBar.attr('max', duration);
-			progressBar.change(seekChange)
+			
+			slider = $(progressBar).slider({
+				min: 0,
+				max: duration,
+				slide: seekChange
+			});
+
+			var sliderButton = slider.children('a')[0];
+
+			$(sliderButton).attr('role', 'slider').attr('tabindex',0).attr('aria-valuenow',0).attr('aria-valuemin',0).attr('aria-valuemax', duration);
 
 			progressTime.text(ctTime + ' / ' + dTime);
 		};
 
-		var seekChange = function(){
-			var time = $(this).val();
+		var seekChange = function(ev, ui){
+			var time = ui.value;
 			var au = $('.fandango-player').children('audio')[0];
 			au.currentTime = time;
 			updateTime();
@@ -471,7 +474,8 @@
 			row.append('<div class="col-md-10 fandango-progressbar"></div>').append('<div class="col-md-2 fandango-progresstime" role="presentation"></div>');
 			progressContainer.append(row);
 			var progressBar = $('.fandango-progressbar');
-			var range = $('<input role="progressbar" type="range" value="0" class="fandango-progressbar-slider" />');
+			// var range = $('<input role="progressbar" type="range" value="0" class="fandango-progressbar-slider" />');
+			var range = $('<div class="fandango-progressbar-slider"></div>');
 			progressBar.append(range);
 		};
 
@@ -622,9 +626,6 @@
 			    else{
 			    	li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '">' + meta.toc[index] + '<span class="pull-right time-display"><small></small></span></li>');
 			    }
-                if (index == 0) {
-                    li.addClass('active').children('.time-display').addClass('time-display-active');
-                }
                 li.click(function(){
         //         	var audio = $('.fandango-player').children('audio')[0];
         //         	var isPlaying = false;
@@ -633,10 +634,8 @@
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
-				    ol.children('li').children('.time-display').removeClass('time-display-active').children('small').text('');
 				    active.removeClass('active');
 				    li.addClass('active');
-				    li.children('.time-display').addClass('time-display-active');
                 });
 		        list.append(li);
 		    });
