@@ -99,17 +99,17 @@
     		imgUrl : 'thumb.jpg',
     		skipSeconds: 5,
     		shortcuts: {
-    			play : 'p, alt+p, shift+p',
-    			stop : 's, alt+s, shift+s',
-    			forward : 't, alt+t, shift+t',
-    			rewind : 'r, alt+r, shift+r',
-    			volumeUp : 'l, alt+l,shift+l',
-    			volumeDown : 'q, alt+q, shift+q',
-    			mute : 'm, alt+m, shift+m',
-    			nextTrack : 'n, alt+n, shit+n',
-    			prevTrack: 'b, alt+b, shit+b',
-                help: 'h, alt+h, shit+h',
-                listen: 'v, alt+v, shit+v'
+    			play : 'p',
+    			stop : 's',
+    			forward : 't',
+    			rewind : 'r',
+    			volumeUp : 'l',
+    			volumeDown : 'q',
+    			mute : 'm',
+    			nextTrack : 'n',
+    			prevTrack: 'b',
+                help: 'h',
+                listen: 'v'
     		}
 		}, options);
 
@@ -229,7 +229,7 @@
 				    createTranscriptionInformation(meta.vttSource[prevPos]);
 				    break;
                 case 'help':
-                    openHelpModal(); break;
+                    $('.fandango-help').modal(); break;
                 case 'listen':
                 	if(speechRecognition !== null){
                 		if(isListening){
@@ -307,14 +307,19 @@
 			    //   modal: true
 			    // });
 	        var modalDOM = 
-	        	'<div class="modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
+	        	'<div class="fandango-help modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
 	        		'<div class="modal-dialog">' +
 						'<div class="modal-content">' +
 							'<div class="modal-header">' +
 								'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
 								'<h4 class="modal-title">' + i18n.t('modal.needHelp') + '</h4>' +
 							'</div>' +
-							'<div class="modal-body"></div>' +
+							'<div class="modal-body">' +
+							i18n.t('modal.description') + '<br />';
+							$.each(settings.shortcuts, function(key, shortcut){
+								modalDOM += '<span><strong>' + i18n.t('playerButtons.' + key) + ': ' + shortcut + '</strong></span><br />';
+							});
+							modalDOM+='</div>' +
 							'<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>' +
 						'</div>' +
 					'</div>' +
@@ -455,6 +460,13 @@
 							else
 								var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
 						}
+					}
+					else if(e.label === 'question-sign'){
+						var elem = '<button data-toggle="modal" data-target="fandango-help" aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						if(e.position === 'left')
+							var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+						else
+							var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
 					}
 					else{
 						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
@@ -648,9 +660,12 @@
 
 		var bindShortcuts = function(){
 			$.each(settings.shortcuts, function(command, shortcut){
-				$.each(shortcut.split(','), function(index, key){
-					$(document).bind('keyup', key.trim(), function(){ self.action(command); return false; });
-				});
+				$(document).bind('keyup', shortcut.trim(), function(){ self.action(command); return false; })
+					.bind('keyup', 'shift+' + shortcut.trim(), function(){ self.action(command); return false; })
+					.bind('keyup', 'alt+' + shortcut.trim(), function(){ self.action(command); return false; });
+				// $.each(shortcut.split(','), function(index, key){
+				// 	$(document).bind('keyup', key.trim(), function(){ self.action(command); return false; });
+				// });
 			});
 		};
 
@@ -722,6 +737,7 @@
 		};
 
 		var createContainers = function(){
+
 			//generate bootstrap row for cover, description and transcript
 			if(settings.coverContainer || settings.descriptionContainer || settings.transcriptContainer){
 				var $row = $('<div class="row"></div>');
@@ -815,8 +831,9 @@
 					$('.fandango-player').i18n();
 					if(!settings.descriptionContainer) return;
 					$('.fandango-description').i18n();
+					openHelpModal();
 				});
-				openHelpModal();
+				
 			});
 		};
 

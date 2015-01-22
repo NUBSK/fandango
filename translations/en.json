@@ -25,6 +25,7 @@
 	},
 	"modal":{
 		"needHelp": "Need help?",
-		"shortcuts": "Shortcuts:"
+		"shortcuts": "Shortcuts:",
+		"description": "All keyborad shortcuts also work with combination of either 'ALT' or 'SHIFT' keys."
 	}
 }
