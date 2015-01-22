@@ -399,7 +399,9 @@
 
 		var updateTranscriptHighlight = function(time){
 			var cues = [];
-			var scroll_top = $('.fandango-transcript').scrollTop();
+			var checkbox = $('.fandango-transcrip-autoscroll-control');
+
+			// var scroll_top = $('.fandango-transcript').scrollTop();
 			if(settings.vtt === 1){
 				// poetry
 				var cues = $('.fandango-transcript').find('span');
@@ -417,7 +419,10 @@
 					cues.removeClass('active');
 					el.addClass('active');
 					// $('.fandango-transcript').scrollTop(el.offset().top + scroll_top);
-					$('.fandango-transcript').scrollTo(el);
+					
+					if(checkbox.is(':checked')){
+						$('.fandango-transcript').scrollTo(el);
+					}
 				}
 			});
 		};
@@ -731,7 +736,7 @@
 				}
 
 				if(settings.transcriptContainer){
-					var $elem = $('<div class="col-md-4 col-sm-4 fandango-transcript"></div>');
+					var $elem = $('<div class="col-md-4 col-sm-4 fandango-transcript-container"><div><input class="fandango-transcrip-autoscroll-control" type="checkbox" checked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
 					$row.append($elem);
 				}
 				self.append($row);
