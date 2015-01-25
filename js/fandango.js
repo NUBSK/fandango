@@ -810,6 +810,11 @@
 
 
 		var generatePlayer = function(){
+			var a = document.createElement('audio');
+			if(!!!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''))){
+				alert('Browser does not support playing audio files');
+				return;
+			}
 			//read the dublin core file
 			$.ajax({
 				url: settings.dublinCore,
