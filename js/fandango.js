@@ -64,9 +64,7 @@
 			}];
 		var controls = ['prevTrack', 'rewind', 'play', 'play', 'stop', 'forward', 'nextTrack', 'mute', 'volumeDown', 'volumeUp', 'help', 'listen'];
 
-		window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 		var isListening = false;
-		var speechRecognition = null;
 
 		var meta = {
 			title: '',
@@ -98,7 +96,7 @@
     		imgUrl : 'thumb.jpg',
     		skipSeconds: 5,
     		headMicrodata: false,
-    		lang: '',
+    		lang: 'mk',
     		fallbackLng: 'mk',
     		webAudio: true,
     		dublinCore: 'dublin_core.xml',
@@ -211,6 +209,7 @@
 					}
 					break;
 				case 'nextTrack':
+					if(meta.source.length === 1) break;
 				    $('.icon-fast-forward').addClass('icon-hover').removeClass('icon-hover', 500, 'linear');
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
@@ -252,14 +251,14 @@
                 case 'help':
                     $('.fandango-help').modal(); break;
                 case 'listen':
-                	if(speechRecognition !== null){
+                	if(annyang){
                 		if(isListening){
-	                		speechRecognition.stop();
+	                		annyang.stop();
 	                		$('.icon-microphone').removeClass('microphone-active');
 	                		isListening = false;
 	                	}
 	                	else{
-	                		speechRecognition.start();
+	                		annyang.start();
 	                		$('.icon-microphone').addClass('microphone-active');
 	                		isListening = true;
 	                	}	
@@ -270,41 +269,21 @@
 		};
 
 		var initSpeechRecognition = function(){
-			if(window.SpeechRecognition !== null){
-				speechRecognition = new window.SpeechRecognition(); 
-				speechRecognition.continuous = true;
-				speechRecognition.lang = "en-US";
-				speechRecognition.interimResults = true;
-
-				speechRecognition.onresult = function(event){
-		          	for (var i = event.resultIndex; i < event.results.length; i++) {
-			            if (event.results[i].isFinal) {
-			            	var text = event.results[i][0].transcript.trim();
-			            	var command = '';
-			            	console.log(text);
-			            	switch(text){
-			            		case 'play': command = 'play'; break;
-			            		case 'pause': command = 'play'; break;
-			            		case 'stop': command = 'stop'; break;
-			            		case 'next track': command = 'nextTrack'; break;
-			            		case 'previous track': command = 'prevTrack'; break;
-			            		case 'back': command = 'rewind'; break;
-			            		case 'skip': command = 'forward'; break;
-			            		case 'volume up': command = 'volumeUp'; break;
-			            		case 'volume down': command = 'volumeDown'; break;
-			            		case 'mute': command = 'mute'; break;
-			            		case 'unmute': command = 'mute'; break;
-			            		default: command = '';
-			            	}
-			              	self.action(command);
-			            }
-		          	}
-				};
-				speechRecognition.onend = function(event){
-					// speechRecognition.start();
-					$('.icon-microphone').removeClass('microphone-active');
-	        		isListening = false;
-				};
+			if(annyang){
+				var commands = {};
+				commands[i18n.t('audioCommands.play')] = function(){self.action('play')};
+				commands[i18n.t('audioCommands.pause')] = function(){self.action('pause')};
+				commands[i18n.t('audioCommands.stop')] = function(){self.action('stop')};
+				commands[i18n.t('audioCommands.prevTrack')] = function(){self.action('prevTrack')};
+				commands[i18n.t('audioCommands.nextTrack')] = function(){self.action('nextTrack')};
+				commands[i18n.t('audioCommands.rewind')] = function(){self.action('rewind')};
+				commands[i18n.t('audioCommands.forward')] = function(){self.action('forward')};
+				commands[i18n.t('audioCommands.volumeUp')] = function(){self.action('volumeUp')};
+				commands[i18n.t('audioCommands.volumeDown')] = function(){self.action('volumeDown')};
+				commands[i18n.t('audioCommands.mute')] = function(){self.action('mute')};
+				commands[i18n.t('audioCommands.help')] = function(){self.action('help')};
+				commands[i18n.t('audioCommands.listen')] = function(){self.action('listen')};
+				annyang.addCommands(commands);
 			}
 		};
 
@@ -830,7 +809,6 @@
 			//read the dublin core file
 			if(settings.skipDublinCore === true){
 				self.empty();
-				initSpeechRecognition();
 				meta = settings.metadata;
 				createContainers();
 				createHeadData();
@@ -846,6 +824,7 @@
 					if(!settings.descriptionContainer) return;
 					$('.fandango-description').i18n();
 					openHelpModal();
+					initSpeechRecognition();
 				});
 			} else{
 				$.ajax({
@@ -853,7 +832,6 @@
 					dataType: 'xml'
 				}).success(function(data){
 					self.empty();
-					initSpeechRecognition();
 					readMetadata($.xml2json(data));
 					createContainers();
 					createHeadData();
@@ -869,6 +847,7 @@
 						if(!settings.descriptionContainer) return;
 						$('.fandango-description').i18n();
 						openHelpModal();
+						initSpeechRecognition();
 					});
 					
 				});
