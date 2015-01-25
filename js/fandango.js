@@ -101,6 +101,7 @@
     		headMicrodata: false,
     		lang: '',
     		fallbackLng: 'mk',
+    		webAudio: true,
     		shortcuts: {
     			play : 'p',
     			stop : 's',
@@ -253,41 +254,41 @@
 
 		var initSpeechRecognition = function(){
 			if(window.SpeechRecognition !== null){
-			speechRecognition = new window.SpeechRecognition(); 
-			speechRecognition.continuous = true;
-			speechRecognition.lang = "en-US";
-			speechRecognition.interimResults = true;
+				speechRecognition = new window.SpeechRecognition(); 
+				speechRecognition.continuous = true;
+				speechRecognition.lang = "en-US";
+				speechRecognition.interimResults = true;
 
-			speechRecognition.onresult = function(event){
-	          for (var i = event.resultIndex; i < event.results.length; i++) {
-	            if (event.results[i].isFinal) {
-	            	var text = event.results[i][0].transcript.trim();
-	            	var command = '';
-	            	console.log(text);
-	            	switch(text){
-	            		case 'play': command = 'play'; break;
-	            		case 'pause': command = 'play'; break;
-	            		case 'stop': command = 'stop'; break;
-	            		case 'next track': command = 'nextTrack'; break;
-	            		case 'previous track': command = 'prevTrack'; break;
-	            		case 'back': command = 'rewind'; break;
-	            		case 'skip': command = 'forward'; break;
-	            		case 'volume up': command = 'volumeUp'; break;
-	            		case 'volume down': command = 'volumeDown'; break;
-	            		case 'mute': command = 'mute'; break;
-	            		case 'unmute': command = 'mute'; break;
-	            		default: command = '';
-	            	}
-	              	self.action(command);
-	            }
-	          }
-			};
-			speechRecognition.onend = function(event){
-				// speechRecognition.start();
-				$('.icon-microphone').removeClass('microphone-active');
-        		isListening = false;
-			};
-		}
+				speechRecognition.onresult = function(event){
+		          	for (var i = event.resultIndex; i < event.results.length; i++) {
+			            if (event.results[i].isFinal) {
+			            	var text = event.results[i][0].transcript.trim();
+			            	var command = '';
+			            	console.log(text);
+			            	switch(text){
+			            		case 'play': command = 'play'; break;
+			            		case 'pause': command = 'play'; break;
+			            		case 'stop': command = 'stop'; break;
+			            		case 'next track': command = 'nextTrack'; break;
+			            		case 'previous track': command = 'prevTrack'; break;
+			            		case 'back': command = 'rewind'; break;
+			            		case 'skip': command = 'forward'; break;
+			            		case 'volume up': command = 'volumeUp'; break;
+			            		case 'volume down': command = 'volumeDown'; break;
+			            		case 'mute': command = 'mute'; break;
+			            		case 'unmute': command = 'mute'; break;
+			            		default: command = '';
+			            	}
+			              	self.action(command);
+			            }
+		          	}
+				};
+				speechRecognition.onend = function(event){
+					// speechRecognition.start();
+					$('.icon-microphone').removeClass('microphone-active');
+	        		isListening = false;
+				};
+			}
 		};
 
 		var changeSource = function (source, isPlaying) {
@@ -301,14 +302,6 @@
 		};
 
 	    var openHelpModal = function() {
-	        // var modal = $('<div class="help-modal" title="' + i18n.t('modal.needHelp') + '"></div>');
-	        // $.each(settings.shortcuts, function(key, shortcut){
-	        // 	modal.append('<span><strong>' + i18n.t('playerButtons.' + key) + ': ' + shortcut + '</strong></span><br />');
-	        // });
-	      //   modal.dialog({
-			    //   resizable: false,
-			    //   modal: true
-			    // });
 	        var modalDOM = 
 	        	'<div class="fandango-help modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
 	        		'<div class="modal-dialog">' +
@@ -456,7 +449,7 @@
 			$.each(icons, function(i,e){
 				if(e.label !== 'pause'){
 					if(e.label === 'microphone'){
-						if(window.SpeechRecognition !== null){
+						if(window.SpeechRecognition !== null && settings.webAudio === true){
 							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
 							if(e.position === 'left')
 								var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
