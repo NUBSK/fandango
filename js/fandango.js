@@ -98,6 +98,7 @@
     		dublinCore: 'dublin_core.xml',
     		imgUrl : 'thumb.jpg',
     		skipSeconds: 5,
+    		headMicrodata: false,
     		shortcuts: {
     			play : 'p',
     			stop : 's',
@@ -644,9 +645,6 @@
 			    	li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '">' + meta.toc[index] + '<span class="pull-right time-display"><small></small></span></li>');
 			    }
                 li.click(function(){
-        //         	var audio = $('.fandango-player').children('audio')[0];
-        //         	var isPlaying = false;
-				    // if (audio !== undefined && !audio.paused && audio.duration > 0) isPlaying = true;
 				    changeSource(source, true);
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
@@ -702,6 +700,7 @@
 		};
 
 		var createHeadData = function(){
+			if(!settings.headMicrodata) return;
 			var title = $(document).find('title');
 			if(title.length === 0){
 				//no title tag found, create one
