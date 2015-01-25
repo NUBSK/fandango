@@ -95,13 +95,30 @@
     		vtt: 0,
     		microdata: 0,
     		dataUrl: '',
-    		dublinCore: 'dublin_core.xml',
     		imgUrl : 'thumb.jpg',
     		skipSeconds: 5,
     		headMicrodata: false,
     		lang: '',
     		fallbackLng: 'mk',
     		webAudio: true,
+    		dublinCore: 'dublin_core.xml',
+    		skipDublinCore: false,
+    		metadata:{
+				title: '',
+				altTitle: '',
+				author: [],
+				issued: '',
+				publisher: '',
+				narrator: '',
+				toc: [],
+				source: [],
+				vttSource: [],
+				isbn: '',
+				uri: '',
+				description: '',
+				subject: '',
+				keyword: ''
+			},
     		shortcuts: {
     			play : 'p',
     			stop : 's',
@@ -811,13 +828,10 @@
 				return;
 			}
 			//read the dublin core file
-			$.ajax({
-				url: settings.dublinCore,
-				dataType: 'xml'
-			}).success(function(data){
+			if(settings.skipDublinCore === true){
 				self.empty();
 				initSpeechRecognition();
-				readMetadata($.xml2json(data));
+				meta = settings.metadata;
 				createContainers();
 				createHeadData();
 				createAudioPlayer();
@@ -833,8 +847,33 @@
 					$('.fandango-description').i18n();
 					openHelpModal();
 				});
-				
-			});
+			} else{
+				$.ajax({
+					url: settings.dublinCore,
+					dataType: 'xml'
+				}).success(function(data){
+					self.empty();
+					initSpeechRecognition();
+					readMetadata($.xml2json(data));
+					createContainers();
+					createHeadData();
+					createAudioPlayer();
+					createAudioControls();	
+					createBookCover();
+					createDescriptionInformation();
+					createChapterPlaylist();
+					bindShortcuts();
+					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
+					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+						$('.fandango-player').i18n();
+						if(!settings.descriptionContainer) return;
+						$('.fandango-description').i18n();
+						openHelpModal();
+					});
+					
+				});
+			}
+			
 		};
 
 		generatePlayer();
