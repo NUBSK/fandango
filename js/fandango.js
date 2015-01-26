@@ -90,13 +90,13 @@
     		trackContainer : true,
     		statusContainer: true,
     		progressContainer: true,
-    		vtt: 0,
-    		microdata: 0,
+    		vtt: 1,
+    		microdata: 1,
     		dataUrl: '',
-    		imgUrl : 'thumb.jpg',
-    		skipSeconds: 5,
-    		headMicrodata: false,
-    		lang: 'mk',
+    		imgUrl : '',
+    		skipSeconds: 10,
+    		headMicrodata: true,
+    		lang: '',
     		fallbackLng: 'mk',
     		webAudio: true,
     		dublinCore: 'dublin_core.xml',
@@ -584,11 +584,7 @@
                 parser.parse(data);
                 parser.flush();
                 $('.fandango-transcript').empty().addClass('hand');
-                if(settings.vtt === 0){
-					//hide vtt fields
-					$('.fandango-transcript').hide();	
-				}
-				else if(settings.vtt === 1){
+                if(settings.vtt === 1){
 					//show poetry vtt
 					$.each(cues, function(ix, cue){
 						$('.fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span><br />');
@@ -736,9 +732,9 @@
 			var $elem = $('<div class="col-md-12 col-sm-12 fandango-transcript-container"><div><input class="fandango-transcript-autoscroll-control" type="checkbox" checked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
 				rightContainer.append($elem);
 			}
-			//generate bootstrap row for cover, description and transcript
-			// if(settings.coverContainer || settings.descriptionContainer || settings.transcriptContainer){
-				if(settings.coverContainer || settings.descriptionContainer){
+			//generate bootstrap row for cover and description
+			// if(settings.coverContainer || settings.descriptionContainer){
+				if(settings.coverContainer && settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
 				if(settings.coverContainer){
 					var $elem = $('<div class="col-md-6 col-sm-6 col-xs-6 fandango-cover"></div>');
@@ -752,6 +748,24 @@
 
 				leftContainer.append($row);
 				leftContainer.append($('<br />'));
+			}
+			else if(!settings.coverContainer && settings.descriptionContainer){
+				var $row = $('<div class="row"></div>');
+				var $elem = $('<div class="col-md-12 col-sm-12 col-xs-12 fandango-description"></div>');
+				$row.append($elem);	
+
+				leftContainer.append($row);
+				leftContainer.append($('<br />'));			
+			}
+			else if(settings.coverContainer && !settings.descriptionContainer){
+				var $row = $('<div class="row"></div>');
+				var $elem = $('<div class="col-md-12 col-sm-12 col-xs-12 fandango-cover"></div>');
+				$row.append($elem);	
+
+				leftContainer.append($row);
+				leftContainer.append($('<br />'));			
+			}
+			else {			
 			}
 
 			//generate row for status and progress bars
@@ -769,7 +783,7 @@
 			else if(settings.statusContainer && !settings.progressContainer){
 				//generate row with status containers above the buttons, then generate the buttons container
 				var parent = $('<div class="row"></div>');
-				var row = $('<div class="col-md-8"></div>');
+				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
 				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull fandango-status">Waiting</div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
@@ -780,9 +794,9 @@
 			else if(!settings.statusContainer && settings.progressContainer){
 				//generate row with progress containers above the buttons, then generate the buttons container
 				var parent = $('<div class="row"></div>');
-				var row = $('<div class="col-md-8"></div>');
+				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-8 fandango-progress"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-12 fandango-progress"></div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
@@ -791,7 +805,7 @@
 			else {
 				//generate only button container
 				var parent = $('<div class="row"></div>');
-				var row = $('<div class="col-md-8"></div>');
+				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowBelow.appendTo(row);
