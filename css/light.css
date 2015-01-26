@@ -20,7 +20,7 @@
     outline:none;
 }
 
-.fandango-cover, .fandango-description, .fandango-transcript {
+.fandango-cover, .fandango-description {
     height: 300px;
     overflow: hidden;
 }
@@ -43,7 +43,6 @@
 
 .fandango-transcript {
     overflow-y: scroll;
-    height: 300px;
     border: 1px solid #ddd;
     border-left: none;
 }

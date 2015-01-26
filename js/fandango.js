@@ -396,7 +396,7 @@
 
 		var updateTranscriptHighlight = function(time){
 			var cues = [];
-			var checkbox = $('.fandango-transcrip-autoscroll-control');
+			var checkbox = $('.fandango-transcript-autoscroll-control');
 
 			// var scroll_top = $('.fandango-transcript').scrollTop();
 			if(settings.vtt === 1){
@@ -480,7 +480,7 @@
 			if(!settings.progressContainer) return;
 			var progressContainer = $('.fandango-progress');
 			var row = $('<div class="row"></div>');
-			row.append('<div class="col-md-10 fandango-progressbar"></div>').append('<div class="col-md-2 fandango-progresstime" role="presentation"></div>');
+			row.append('<div class="col-md-10 col-sm-10 fandango-progressbar"></div>').append('<div class="col-md-2 col-sm-2 fandango-progresstime" role="presentation"></div>');
 			progressContainer.append(row);
 			var progressBar = $('.fandango-progressbar');
 			// var range = $('<input role="progressbar" type="range" value="0" class="fandango-progressbar-slider" />');
@@ -571,6 +571,9 @@
 		};
 
 		var createTranscriptionInformation = function(source){
+			var leftPanel = $('.fandango-left-panel');
+			var rightPanel = $('.fandango-transcript');
+			rightPanel.css('height', leftPanel.height());
 			if(!settings.transcriptContainer || settings.microdata !== 1) return;
 			$.ajax({url: source}).success(function(data){
                 var parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
@@ -581,8 +584,6 @@
                 parser.parse(data);
                 parser.flush();
                 $('.fandango-transcript').empty().addClass('hand');
-                // if($('.fandango-transcript').css('overflow-y') !== 'scroll') $('.fandango-transcript').css('overflow-y', 'scroll');
-                // $('.fandango-transcript').css('height', 0).css('height',$('.fandango-transcript').parent().height());
                 if(settings.vtt === 0){
 					//hide vtt fields
 					$('.fandango-transcript').hide();	
@@ -727,39 +728,43 @@
 		};
 
 		var createContainers = function(){
-
+			var r = $('<div class="row"></div>');
+			var leftContainer = $('<div class="fandango-left-panel col-md-8 col-sm-12"></div>');
+			var rightContainer = $('<div class="fandango-right-panel col-md-4 col-sm-12"></div>');
+			
+			if(settings.transcriptContainer){
+			var $elem = $('<div class="col-md-12 col-sm-12 fandango-transcript-container"><div><input class="fandango-transcript-autoscroll-control" type="checkbox" checked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
+				rightContainer.append($elem);
+			}
 			//generate bootstrap row for cover, description and transcript
-			if(settings.coverContainer || settings.descriptionContainer || settings.transcriptContainer){
+			// if(settings.coverContainer || settings.descriptionContainer || settings.transcriptContainer){
+				if(settings.coverContainer || settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
 				if(settings.coverContainer){
-					var $elem = $('<div class="col-md-4 col-sm-4 col-xs-6 fandango-cover"></div>');
+					var $elem = $('<div class="col-md-6 col-sm-6 col-xs-6 fandango-cover"></div>');
 					$row.append($elem);
 				}
 
 				if(settings.descriptionContainer){
-					var $elem = $('<div class="col-md-4 col-sm-4 col-xs-6 fandango-description"></div>');
+					var $elem = $('<div class="col-md-6 col-sm-6 col-xs-6 fandango-description"></div>');
 					$row.append($elem);
 				}
 
-				if(settings.transcriptContainer){
-					var $elem = $('<div class="col-md-4 col-sm-4 fandango-transcript-container"><div><input class="fandango-transcrip-autoscroll-control" type="checkbox" checked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
-					$row.append($elem);
-				}
-				self.append($row);
-				self.append($('<br />'));
+				leftContainer.append($row);
+				leftContainer.append($('<br />'));
 			}
 
 			//generate row for status and progress bars
 			if(settings.statusContainer && settings.progressContainer){
 				//generate row with progress and status containers above the buttons, then generate the buttons container
 				var parent = $('<div class="row"></div>');
-				var row = $('<div class="col-md-8"></div>');
+				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 pull-right fandango-status">Waiting</div>'));
-				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-11 col-sm-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 col-sm-1 pull-right fandango-status">Waiting</div>'));
+				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
-				parent.appendTo(self);
+				parent.appendTo(leftContainer);
 			}
 			else if(settings.statusContainer && !settings.progressContainer){
 				//generate row with status containers above the buttons, then generate the buttons container
@@ -770,7 +775,7 @@
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
-				parent.appendTo(self);
+				parent.appendTo(leftContainer);
 			}
 			else if(!settings.statusContainer && settings.progressContainer){
 				//generate row with progress containers above the buttons, then generate the buttons container
@@ -781,7 +786,7 @@
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
-				parent.appendTo(self);
+				parent.appendTo(leftContainer);
 			}
 			else {
 				//generate only button container
@@ -790,15 +795,16 @@
 				parent.append(row);
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowBelow.appendTo(row);
-				parent.appendTo(self);
+				parent.appendTo(leftContainer);
 			}
 			//generate row for the playlist
 			if(settings.trackContainer){
-				$('<div class="row"></div>').append($('<div class="col-md-8 fandango-playlist"></div>')).appendTo(self);
+				$('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 fandango-playlist"></div>')).appendTo(leftContainer);
 			}
-
+			r.append(leftContainer);
+			r.append(rightContainer);
+			self.append(r);
 		};
-
 
 		var generatePlayer = function(){
 			var a = document.createElement('audio');
@@ -812,11 +818,11 @@
 				meta = settings.metadata;
 				createContainers();
 				createHeadData();
-				createAudioPlayer();
 				createAudioControls();	
 				createBookCover();
 				createDescriptionInformation();
 				createChapterPlaylist();
+				createAudioPlayer();
 				bindShortcuts();
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
@@ -835,11 +841,11 @@
 					readMetadata($.xml2json(data));
 					createContainers();
 					createHeadData();
-					createAudioPlayer();
 					createAudioControls();	
 					createBookCover();
 					createDescriptionInformation();
 					createChapterPlaylist();
+					createAudioPlayer();
 					bindShortcuts();
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
