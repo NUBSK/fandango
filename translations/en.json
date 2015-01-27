@@ -41,5 +41,12 @@
 		"mute":"Mute",
 		"help":"Help",
 		"listen": "Speak commands"
+	},
+	"status": {
+		"play": "Playing",
+		"stop": "Stopped",
+		"pause": "Paused",
+		"mute": "Muted",
+		"ready": "Waiting"
 	}
 }
