@@ -143,7 +143,7 @@
 						var button = $('.fandango-player .fandango-player-controls').children('.icon-play');
 						button.addClass('icon-pause').addClass('active').attr('aria-pressed', 'true').removeClass('icon-play');
 						button.attr('title', i18n.t('playerButtons.pause'));
-						$('.fandango-status').html('Paused');
+						$('.fandango-status').html(i18n.t('status.pause'));
 					}
 					else {
 						//audio is paused, start playing
@@ -160,7 +160,7 @@
 							button.addClass('icon-play').addClass('active').attr('aria-pressed', 'true').removeClass('icon-pause');
 							button.attr('title', i18n.t('playerButtons.play'));
 						}
-						$('.fandango-status').html('Playing');
+						$('.fandango-status').html(i18n.t('status.play'));
 							
 					}
 					break;
@@ -169,43 +169,43 @@
 					audio.currentTime = 0;
 					$('.fandango-player .fandango-player-controls').children('.icon.active').removeClass('active').attr('aria-pressed', 'false');
 					$('.fandango-player .fandango-player-controls').children('.icon-stop').addClass('active').attr('aria-pressed', 'true');
-					$('.fandango-status').html('Stopped');
+					$('.fandango-status').html(i18n.t('status.stop'));
 					break;
 				case 'forward':
 					audio.currentTime+=settings.skipSeconds;
-					$('.icon-forward').addClass('icon-hover').removeClass('icon-hover',500,'linear');
+					$('.icon-forward').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'rewind': 
 					audio.currentTime-=settings.skipSeconds;
-					$('.icon-backward').addClass('icon-hover').removeClass('icon-hover',500,'linear');
+					$('.icon-backward').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'volumeUp': 
 					if(audio.volume < 1.0)
 						audio.volume+=0.1;
 					audio.muted = false;
-					$('.icon-volume-up').addClass('icon-hover').removeClass('icon-hover',500,'linear');
+					$('.icon-volume-up').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'volumeDown': 
 					if(audio.volume > 0)
 						audio.volume-=0.1;
 					audio.muted = false;
-					$('.icon-volume-down').addClass('icon-hover').removeClass('icon-hover',500,'linear');
+					$('.icon-volume-down').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'mute': 
 					if(audio.muted) $('.icon-volume-off').removeClass('active').attr('aria-pressed','false');
 					else $('.icon-volume-off').addClass('active').attr('aria-pressed', 'true');
 					audio.muted = !audio.muted;
 					if(audio.muted){
-						$('.fandango-status').html('Muted');
+						$('.fandango-status').html(i18n.t('status.mute'));
 					}
 					else{
 						if(audio.paused){
-							$('.fandango-status').html('Paused');
+							$('.fandango-status').html(i18n.t('status.pause'));
 						}
 						else if(!audio.playing && audio.currentTime > 0){
-							$('.fandango-status').html('Playing');
+							$('.fandango-status').html(i18n.t('status.play'));
 						}
-						else $('.fandango-status').html('Stopped');
+						else $('.fandango-status').html(i18n.t('status.stop'));
 					}
 					break;
 				case 'nextTrack':
@@ -478,10 +478,8 @@
 
 			//create progress bar
 			if(!settings.progressContainer) return;
-			var progressContainer = $('.fandango-progress');
-			var row = $('<div class="row"></div>');
-			row.append('<div class="col-md-10 col-sm-10 fandango-progressbar"></div>').append('<div class="col-md-2 col-sm-2 fandango-progresstime" role="presentation"></div>');
-			progressContainer.append(row);
+			$('.fandango-progress').append('<div class="col-md-10 col-sm-10 fandango-progressbar"></div>').append('<div class="col-md-2 col-sm-2 fandango-progresstime" role="presentation"></div>');
+			//progressContainer.append(row);
 			var progressBar = $('.fandango-progressbar');
 			// var range = $('<input role="progressbar" type="range" value="0" class="fandango-progressbar-slider" />');
 			var range = $('<div class="fandango-progressbar-slider"></div>');
@@ -574,7 +572,7 @@
 			var leftPanel = $('.fandango-left-panel');
 			var rightPanel = $('.fandango-transcript');
 			rightPanel.css('height', leftPanel.height());
-			if(!settings.transcriptContainer || settings.microdata !== 1) return;
+			if(!settings.transcriptContainer) return;
 			$.ajax({url: source}).success(function(data){
                 var parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
                 var cues = [];
@@ -729,7 +727,7 @@
 			var rightContainer = $('<div class="fandango-right-panel col-md-4 col-sm-12"></div>');
 			
 			if(settings.transcriptContainer){
-			var $elem = $('<div class="col-md-12 col-sm-12 fandango-transcript-container"><div><input class="fandango-transcript-autoscroll-control" type="checkbox" checked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
+			var $elem = $('<div class="col-md-12 col-sm-12 fandango-transcript-container"><div><input class="fandango-transcript-autoscroll-control" type="checkbox" unchecked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
 				rightContainer.append($elem);
 			}
 			//generate bootstrap row for cover and description
@@ -774,7 +772,7 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-11 col-sm-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 col-sm-1 pull-right fandango-status">Waiting</div>'));
+				var rowAbove = $('<div class="row"></div>').append($('<div class="col-md-11 col-sm-11 fandango-progress"></div>')).append($('<div aria-role="alert" class="col-md-1 col-sm-1 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
@@ -785,7 +783,7 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull fandango-status">Waiting</div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
 				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
@@ -823,7 +821,7 @@
 		var generatePlayer = function(){
 			var a = document.createElement('audio');
 			if(!!!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''))){
-				alert('Browser does not support playing audio files');
+				$('.player').append('<p class="alert alert-danger"><strong>You are using outdated browser that is no longer supported!</strong></p>');
 				return;
 			}
 			//read the dublin core file
@@ -864,6 +862,7 @@
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 						$('.fandango-player').i18n();
+						$('.fandango-status').i18n();
 						if(!settings.descriptionContainer) return;
 						$('.fandango-description').i18n();
 						openHelpModal();
