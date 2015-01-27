@@ -498,25 +498,25 @@
 			if(settings.microdata == 0){
 				//if 0 don't display microdata, just display information about source				
 				if(meta.title !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.title"></span> ' + meta.title + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.title"></strong> ' + meta.title + '</p>');
 				}
 				if(meta.altTitle !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.altTitle"></span> ' + meta.altTitle + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.altTitle"></strong> ' + meta.altTitle + '</p>');
 				}
 				if(meta.author !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.author"></span> ' + meta.author.join(', ') + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.author"></strong> ' + meta.author.join(', ') + '</p>');
 				}
 				if(meta.publisher !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.publisher"></span> ' + meta.publisher + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.publisher"></strong> ' + meta.publisher + '</p>');
 				}
 				if(meta.narrator !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.narrator"></span> ' + meta.narrator + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.narrator"></strong> ' + meta.narrator + '</p>');
 				}
 				if(meta.issued !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.dateIssued"></span> ' + meta.issued + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong> ' + meta.issued + '</p>');
 				}
 				if(meta.isbn !== ''){
-					$('.fandango-description').append('<p><span data-i18n="description.isbn"></span> ' + meta.isbn + '</p>');
+					$('.fandango-description').append('<p><strong data-i18n="description.isbn"></strong> ' + meta.isbn + '</p>');
 				}
 			}
 			else if(settings.microdata === 1){
