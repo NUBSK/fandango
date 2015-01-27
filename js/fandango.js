@@ -839,6 +839,7 @@
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 					$('.fandango-player').i18n();
+					$('.fandango-status').i18n();
 					if(!settings.descriptionContainer) return;
 					$('.fandango-description').i18n();
 					openHelpModal();
