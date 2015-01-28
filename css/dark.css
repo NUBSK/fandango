@@ -32,6 +32,11 @@
     vertical-align: top;
 }
 
+.fandango-cover img {
+    width:100%;
+    max-width:inherit;
+}
+
 .fandango-description {
     color: #fff;
 }
