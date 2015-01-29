@@ -190,8 +190,8 @@
 					$('.icon-volume-down').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'mute': 
-					if(audio.muted) $('.icon-volume-off').removeClass('active').attr('aria-pressed','false');
-					else $('.icon-volume-off').addClass('active').attr('aria-pressed', 'true');
+					if(audio.muted) $('.icon-volume-off').removeClass('mute-active').attr('aria-pressed','false');
+					else $('.icon-volume-off').addClass('mute-active').attr('aria-pressed', 'true');
 					audio.muted = !audio.muted;
 					if(audio.muted){
 						$('.fandango-status').html(i18n.t('status.mute'));
@@ -222,7 +222,7 @@
                     
                     nextTrack.addClass('active');
 
-				    changeSource(nextLink, true);
+				    changeSource(nextLink);
 				    createTranscriptionInformation(meta.vttSource[nextPos]);
 					break;
 				case 'prevTrack': 
@@ -239,7 +239,7 @@
 				    var prevLink = prevTrack.attr('data-source');
 
 				    prevTrack.addClass('active');
-				    changeSource(prevLink, true);
+				    changeSource(prevLink);
 				    createTranscriptionInformation(meta.vttSource[prevPos]);
 				    break;
                 case 'help':
@@ -284,14 +284,32 @@
 			}
 		};
 
-		var changeSource = function (source, isPlaying) {
+		var changeSource = function (source) {
 		    var nativeAudioElem = $('.fandango-player').children('audio')[0];
 		    var audio = $(nativeAudioElem);
+		    var currSource = $(audio.children('source')[0]).attr('src');
+
+		    var state = '';
+		    if(audio !== null && audio.paused)
+		    	state = 'paused';
+		    else if(audio !== null && !audio.paused && audio.currentTime > 0)
+		    	state = 'playing';
+		    else
+		    	state = 'stopped';
+
+
+		    if(source === currSource){
+		    	//same track is clicked, if is playing pause it, if is paused play it...
+		    	self.action('play');
+		    	return;
+		    }
+
 		    audio.children('source').remove();
 		    var sources = $('<source type="audio/mpeg">').attr('src', source);
 		    audio.append(sources);
 		    nativeAudioElem.load();
-		    if (isPlaying) nativeAudioElem.play();
+		    self.action('play');
+		    // if (isPlaying) nativeAudioElem.play();
 		};
 
 	    var openHelpModal = function() {
@@ -316,8 +334,22 @@
 	        $('body').append(modalDOM);
 	    };
 
-		var controlClick = function(e){		
-			self.action($(this).attr('data-control'));
+		var controlClick = function(e){
+			var ctrl = $(this).attr('data-control');
+
+			if(ctrl === 'play'){
+				var nativeAudioElem = $('.fandango-player').children('audio')[0];
+				var audio = $(nativeAudioElem);
+			    var currSource = $(audio.children('source')[0]).attr('src');
+
+				var ol = $('.fandango-playlist' + ' ol.tracks');
+				var li = ol.children("li[data-source='" + currSource + "']")[0];
+				li = $(li);
+				if(!li.hasClass('active'))
+					li.addClass('active');
+			}
+
+			self.action(ctrl);
 		};
 
 		var updateTime = function(){
@@ -618,7 +650,7 @@
 			    	li = $('<li tabindex="0" data-pos="' + index +'" data-source="' + source + '">' + meta.toc[index] + '</li>');
 			    }
                 li.click(function(){
-				    changeSource(source, true);
+				    changeSource(source);
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
@@ -802,55 +834,63 @@
 			self.append(r);
 		};
 
-		var generatePlayer = function(){
+		var checkIfNotSupported = function(){
 			var a = document.createElement('audio');
-			if(!!!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''))){
-				$('.player').append('<p class="alert alert-danger"><strong>You are using outdated browser that is no longer supported!</strong></p>');
-				return;
-			}
+			return !!!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+		};
+
+		var generatePlayer = function(){
 			//read the dublin core file
 			if(settings.skipDublinCore === true){
-				self.empty();
-				meta = settings.metadata;
-				createContainers();
-				createHeadData();
-				createAudioControls();	
-				createBookCover();
-				createDescriptionInformation();
-				createChapterPlaylist();
-				createAudioPlayer();
-				bindShortcuts();
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
-					$('.fandango-player').i18n();
-					if(!settings.descriptionContainer) return;
-					$('.fandango-description').i18n();
-					openHelpModal();
-					initSpeechRecognition();
-				});
-			} else{
-				$.ajax({
-					url: settings.dublinCore,
-					dataType: 'xml'
-				}).success(function(data){
+					if(checkIfNotSupported()){
+						$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
+						return;
+					}
 					self.empty();
-					readMetadata($.xml2json(data));
+					meta = settings.metadata;
 					createContainers();
 					createHeadData();
 					createAudioControls();	
 					createBookCover();
 					createDescriptionInformation();
 					createChapterPlaylist();
+					$('.fandango-player').i18n();
+					if(!settings.descriptionContainer) return;
+					$('.fandango-description').i18n();
+					openHelpModal();
+					initSpeechRecognition();
 					createAudioPlayer();
 					bindShortcuts();
+				});
+			} else{
+				$.ajax({
+					url: settings.dublinCore,
+					dataType: 'xml'
+				}).success(function(data){
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+						if(checkIfNotSupported()){
+							$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
+							return;
+						}
+						self.empty();
+						readMetadata($.xml2json(data));
+						createContainers();
+						createHeadData();
+						createAudioControls();	
+						createBookCover();
+						createDescriptionInformation();
+						createChapterPlaylist();
 						$('.fandango-player').i18n();
 						$('.fandango-status').i18n();
 						if(!settings.descriptionContainer) return;
 						$('.fandango-description').i18n();
 						openHelpModal();
 						initSpeechRecognition();
+						createAudioPlayer();
+						bindShortcuts();
 					});
 					
 				});

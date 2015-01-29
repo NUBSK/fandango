@@ -1,4 +1,7 @@
 {
+	"errors":{
+		"playerNotSupported": "You are using outdated browser that is no longer supported!"
+	},
 	"description": {
 		"title": "Title:",
 		"altTitle": "Alternative title:",

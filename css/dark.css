@@ -17,7 +17,7 @@
     outline:none;
 }
 
-.fandango-player button:active,.fandango-player button.active {
+.fandango-player button:active,.fandango-player button.active, button.mute-active {
     background: #bd5532;
     color: #fff;
     outline:none;

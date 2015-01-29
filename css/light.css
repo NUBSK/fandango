@@ -16,7 +16,7 @@
     color:#333;
 }
 
-.fandango-player button:active,.fandango-player button:focus,.icon.active {
+.fandango-player button:active,.fandango-player button:focus,.icon.active, button.mute-active {
     background:#fff;
     color: #333;
     outline:none;

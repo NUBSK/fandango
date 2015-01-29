@@ -1,4 +1,7 @@
 {
+	"errors":{
+		"playerNotSupported": "Користите пребарувач кој што не е поддржан!"
+		},
 	"description": {
 		"title": "Наслов:",
 		"altTitle": "Алтернативен наслов:",
