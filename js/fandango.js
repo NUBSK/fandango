@@ -11,6 +11,8 @@
 		
 		var slider = null;
 
+		var parentSelector = '';
+
 		var icons = [
 			{
 				label: 'fast-backward',
@@ -131,85 +133,85 @@
 		}, options);
 
 		self.action = function(action){
-		    var audio = $('.fandango-player').children('audio')[0];
+		    var audio = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
 			switch(action){
 				case 'play':
 					if(audio !== undefined && !audio.paused && audio.duration > 0){
 						//audio is playing, pause it
 						audio.pause();
-						$('.fandango-player .fandango-player-controls').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
-						var button = $('.fandango-player .fandango-player-controls').children('.icon-play');
+						$('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.' + parentSelector + ' .icon-play, .' + parentSelector + ' .icon-pause, .' + parentSelector + ' .icon-stop').removeClass('active').attr('aria-pressed','false');
+						var button = $('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon-play');
 						button.addClass('icon-pause').addClass('active').attr('aria-pressed', 'true').removeClass('icon-play');
 						button.attr('title', i18n.t('playerButtons.pause'));
-						$('.fandango-status').html(i18n.t('status.pause'));
+						$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.pause'));
 					}
 					else {
 						//audio is paused, start playing
 						audio.play();
-						$('.fandango-player .fandango-player-controls').children('.icon-play, .icon-pause, .icon-stop').removeClass('active').attr('aria-pressed','false');
-						if($('.fandango-player .fandango-player-controls').children('.icon-play').length > 0){
+						$('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.' + parentSelector + ' .icon-play, .' + parentSelector + ' .icon-pause, .' + parentSelector + ' .icon-stop').removeClass('active').attr('aria-pressed','false');
+						if($('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon-play').length > 0){
 							//init play press
-							var button = $('.fandango-player .fandango-player-controls').children('.icon-play');
+							var button = $('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon-play');
 							button.addClass('active').attr('aria-pressed', 'true');
 							button.attr('title', i18n.t('playerButtons.play'));
 						}
 						else{
-							var button = $('.fandango-player .fandango-player-controls').children('.icon-pause');
+							var button = $('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon-pause');
 							button.addClass('icon-play').addClass('active').attr('aria-pressed', 'true').removeClass('icon-pause');
 							button.attr('title', i18n.t('playerButtons.play'));
 						}
-						$('.fandango-status').html(i18n.t('status.play'));
+						$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.play'));
 							
 					}
 					break;
 				case 'stop': 
 					audio.pause();
 					audio.currentTime = 0;
-					$('.fandango-player .fandango-player-controls').children('.icon.active').removeClass('active').attr('aria-pressed', 'false');
-					$('.fandango-player .fandango-player-controls').children('.icon-stop').addClass('active').attr('aria-pressed', 'true');
-					$('.fandango-status').html(i18n.t('status.stop'));
+					$('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon.active').removeClass('active').attr('aria-pressed', 'false');
+					$('.' + parentSelector + ' .fandango-player .fandango-player-controls').children('.icon-stop').addClass('active').attr('aria-pressed', 'true');
+					$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.stop'));
 					break;
 				case 'forward':
 					audio.currentTime+=settings.skipSeconds;
-					$('.icon-forward').addClass('icon-hover').removeClass('icon-hover');
+					$('.' + parentSelector + ' .icon-forward').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'rewind': 
 					audio.currentTime-=settings.skipSeconds;
-					$('.icon-backward').addClass('icon-hover').removeClass('icon-hover');
+					$('.' + parentSelector + ' .icon-backward').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'volumeUp': 
 					if(audio.volume < 1.0)
 						audio.volume+=0.1;
 					audio.muted = false;
-					$('.icon-volume-up').addClass('icon-hover').removeClass('icon-hover');
+					$('.' + parentSelector + ' .icon-volume-up').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'volumeDown': 
 					if(audio.volume > 0)
 						audio.volume-=0.1;
 					audio.muted = false;
-					$('.icon-volume-down').addClass('icon-hover').removeClass('icon-hover');
+					$('.' + parentSelector + ' .icon-volume-down').addClass('icon-hover').removeClass('icon-hover');
 					break;
 				case 'mute': 
-					if(audio.muted) $('.icon-volume-off').removeClass('mute-active').attr('aria-pressed','false');
-					else $('.icon-volume-off').addClass('mute-active').attr('aria-pressed', 'true');
+					if(audio.muted) $('.' + parentSelector + ' .icon-volume-off').removeClass('mute-active').attr('aria-pressed','false');
+					else $('.' + parentSelector + ' .icon-volume-off').addClass('mute-active').attr('aria-pressed', 'true');
 					audio.muted = !audio.muted;
 					if(audio.muted){
-						$('.fandango-status').html(i18n.t('status.mute'));
+						$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.mute'));
 					}
 					else{
 						if(audio.paused){
-							$('.fandango-status').html(i18n.t('status.pause'));
+							$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.pause'));
 						}
 						else if(!audio.playing && audio.currentTime > 0){
-							$('.fandango-status').html(i18n.t('status.play'));
+							$('.' + parentSelector + ' .fandango-status').html(i18n.t('status.play'));
 						}
-						else $('.fandango-status').html(i18n.t('status.stop'));
+						else $('.' + parentSelector + ' .fandango-status').html(i18n.t('status.stop'));
 					}
 					break;
 				case 'nextTrack':
 					if(meta.source.length === 1) break;
-				    $('.icon-fast-forward').addClass('icon-hover').removeClass('icon-hover');
-				    var ol = $('.fandango-playlist' + ' ol.tracks');
+				    $('.' + parentSelector + ' .icon-fast-forward').addClass('icon-hover').removeClass('icon-hover');
+				    var ol = $('.' + parentSelector + ' .fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
 				    var pos = parseInt(active.attr('data-pos'));
 				    var nextPos = 0;
@@ -226,7 +228,7 @@
 				    createTranscriptionInformation(meta.vttSource[nextPos]);
 					break;
 				case 'prevTrack': 
-				    $('.icon-fast-backward').addClass('icon-hover').removeClass('icon-hover');
+				    $('.' + parentSelector + ' .icon-fast-backward').addClass('icon-hover').removeClass('icon-hover');
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
 				    var pos = parseInt(active.attr('data-pos'));
@@ -243,17 +245,17 @@
 				    createTranscriptionInformation(meta.vttSource[prevPos]);
 				    break;
                 case 'help':
-                    $('.fandango-help').modal(); break;
+                    $('.' + parentSelector + '-fandango-help').modal(); break;
                 case 'listen':
                 	if(annyang){
                 		if(isListening){
 	                		annyang.stop();
-	                		$('.icon-microphone').removeClass('microphone-active');
+	                		$('.' + parentSelector + ' .icon-microphone').removeClass('microphone-active');
 	                		isListening = false;
 	                	}
 	                	else{
 	                		annyang.start();
-	                		$('.icon-microphone').addClass('microphone-active');
+	                		$('.' + parentSelector + ' .icon-microphone').addClass('microphone-active');
 	                		isListening = true;
 	                	}	
                 	}
@@ -285,7 +287,7 @@
 		};
 
 		var changeSource = function (source) {
-		    var nativeAudioElem = $('.fandango-player').children('audio')[0];
+		    var nativeAudioElem = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
 		    var audio = $(nativeAudioElem);
 		    var currSource = $(audio.children('source')[0]).attr('src');
 
@@ -314,7 +316,7 @@
 
 	    var openHelpModal = function() {
 	        var modalDOM = 
-	        	'<div class="fandango-help modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
+	        	'<div class="' + parentSelector + '-fandango-help modal fade" role="dialog" aria-labeledby="Help" aria-hidden="true" tabindex="-1">' +
 	        		'<div class="modal-dialog">' +
 						'<div class="modal-content">' +
 							'<div class="modal-header">' +
@@ -338,11 +340,11 @@
 			var ctrl = $(this).attr('data-control');
 
 			if(ctrl === 'play'){
-				var nativeAudioElem = $('.fandango-player').children('audio')[0];
+				var nativeAudioElem = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
 				var audio = $(nativeAudioElem);
 			    var currSource = $(audio.children('source')[0]).attr('src');
 
-				var ol = $('.fandango-playlist' + ' ol.tracks');
+				var ol = $('.' + parentSelector + ' .fandango-playlist' + ' ol.tracks');
 				var li = ol.children("li[data-source='" + currSource + "']")[0];
 				li = $(li);
 				if(!li.hasClass('active'))
@@ -353,9 +355,9 @@
 		};
 
 		var updateTime = function(){
-			var au = $('.fandango-player').children('audio')[0];
+			var au = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
 
-			var progressTime = $('.fandango-progresstime');
+			var progressTime = $('.' + parentSelector + ' .fandango-progresstime');
 			var currentTime = au.currentTime;
 			var duration = au.duration;
 
@@ -382,8 +384,8 @@
 		};
 
 		var audioLoadedMetadata = function(){
-			var au = $('.fandango-player').children('audio')[0];
-			var progressTime = $('.fandango-progresstime');
+			var au = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
+			var progressTime = $('.' + parentSelector + ' .fandango-progresstime');
 			var currentTime = au.currentTime;
 			var duration = au.duration;
 
@@ -396,7 +398,7 @@
 			var dTime = dMinutes + ':' + dSeconds;
 			var dTime = (dMinutes < 10 ? "0" + dMinutes : dMinutes) + ":" + (dSeconds  < 10 ? "0" + dSeconds : dSeconds);
 
-			var progressBar = $('.fandango-progressbar-slider');
+			var progressBar = $('.' + parentSelector + ' .fandango-progressbar-slider');
 			
 			slider = $(progressBar).slider({
 				min: 0,
@@ -413,21 +415,21 @@
 
 		var seekChange = function(ev, ui){
 			var time = ui.value;
-			var au = $('.fandango-player').children('audio')[0];
+			var au = $('.' + parentSelector + ' .fandango-player').children('audio')[0];
 			au.currentTime = time;
 			updateTime();
 		};
 
 		var updateTranscriptHighlight = function(time){
 			var cues = [];
-			var checkbox = $('.fandango-transcript-autoscroll-control');
+			var checkbox = $('.' + parentSelector + ' .fandango-transcript-autoscroll-control');
 			if(settings.vtt === 1){
 				// poetry
-				var cues = $('.fandango-transcript').find('span');
+				var cues = $('.' + parentSelector + ' .fandango-transcript').find('span');
 			}
 			else if(settings.vtt === 2){
 				// novel
-				var cues = $('.fandango-transcript').find('span');
+				var cues = $('.' + parentSelector + ' .fandango-transcript').find('span');
 			}
 			
 			$.each(cues, function(ix, elem){
@@ -438,14 +440,14 @@
 					cues.removeClass('active');
 					el.addClass('active');
 					if(checkbox.is(':checked')){
-						$('.fandango-transcript').scrollTo(el);
+						$('.' + parentSelector + ' .fandango-transcript').scrollTo(el);
 					}
 				}
 			});
 		};
 
 		var createAudioPlayer = function () {
-			var audioContainer = $('.fandango-player');
+			var audioContainer = $('.' + parentSelector + ' .fandango-player');
 		    var audio = $('<audio preload="metadata" class="audio"></audio>');
 			var sources = $('<source type="audio/mpeg">').attr('src', meta.source[0]);
 			audioContainer.append(audio);
@@ -459,37 +461,37 @@
 		};
 
 		var createAudioControls = function(){
-			var audioContainer = $('.fandango-player');
-			audioContainer.append($('<div class="fandango-player-controls fandango-left-controls pull-left col-md-6 col-sm-6 col-xs-6"></div>'));
-			audioContainer.append($('<div class="fandango-player-controls fandango-right-controls pull-right col-md-6 col-sm-6 col-xs-6"></div>'));
+			var audioContainer = $('.' + parentSelector + ' .fandango-player');
+			audioContainer.append($('<div class="' + parentSelector + ' fandango-player-controls fandango-left-controls pull-left col-md-6 col-sm-6 col-xs-6"></div>'));
+			audioContainer.append($('<div class="' + parentSelector + ' fandango-player-controls fandango-right-controls pull-right col-md-6 col-sm-6 col-xs-6"></div>'));
 			$.each(icons, function(i,e){
 				if(e.label !== 'pause'){
 					if(e.label === 'microphone'){
 						if(settings.webAudio === true && annyang){
-							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
 							if(e.position === 'left')
-								var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+								var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 							else
-								var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
+								var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-right-controls');
 						}
 					}
 					else if(e.label === 'question-sign'){
-						var elem = '<button data-toggle="modal" data-target="fandango-help" aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						var elem = '<button data-toggle="modal" data-target="' + parentSelector + '-fandango-help" aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
 						if(e.position === 'left')
-							var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
-							var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
+							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector +' .fandango-right-controls');
 					}
 					else{
-						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
 						if(e.position === 'left')
-							var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
+							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
-							var icon = $(elem).click(controlClick).appendTo('.fandango-right-controls');
+							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector +' .fandango-right-controls');
 					}
 				}
 			});
-			$('.icon-fast-backward, .icon-fast-forward, .icon-backward, .icon-forward, .icon-volume-up, .icon-volume-down, .icon-volume-off')
+			$(parentSelector + ' .icon-fast-backward, .' + parentSelector + ' .icon-fast-forward, .' + parentSelector + ' .icon-backward, .' + parentSelector + ' .icon-forward, .' + parentSelector + ' .icon-volume-up, .' + parentSelector + ' .icon-volume-down, .' + parentSelector + ' .icon-volume-off')
 				.hover(function(){
 					$(this).addClass('icon-hover');
 				}, function(){
@@ -498,10 +500,10 @@
 
 			//create progress bar
 			if(!settings.progressContainer) return;
-			$('.fandango-progress').append('<div class="col-md-9 col-sm-9 col-xs-9 pull-left fandango-progressbar"></div>').append('<div class="col-md-2 col-sm-2 col-xs-2 fandango-progresstime" role="presentation"></div>');
+			$('.'+parentSelector + ' .fandango-progress').append('<div class="' + parentSelector + ' col-md-9 col-sm-9 col-xs-9 pull-left fandango-progressbar"></div>').append('<div class="' + parentSelector + ' col-md-2 col-sm-2 col-xs-2 fandango-progresstime" role="presentation"></div>');
 			//progressContainer.append(row);
-			var progressBar = $('.fandango-progressbar');
-			var range = $('<div class="fandango-progressbar-slider"></div>');
+			var progressBar = $('.'+parentSelector + ' .fandango-progressbar');
+			var range = $('<div class="' + parentSelector + ' fandango-progressbar-slider"></div>');
 			progressBar.append(range);
 		};
 
@@ -509,7 +511,7 @@
 			//get image url from dublin core
 			if(!settings.coverContainer) return;
 			var img = $('<img class="img-responsive" title="' + meta.title + ' | ' + meta.author + '" alt="' + meta.title + ' | ' + meta.author + '" itemprop="image" src="' + settings.imgUrl + '" />');
-			$('.fandango-cover').append(img);
+			$('.'+parentSelector +' .fandango-cover').append(img);
 		};
 
 		var createDescriptionInformation = function() {
@@ -517,80 +519,81 @@
 			if(settings.microdata == 0){
 				//if 0 don't display microdata, just display information about source				
 				if(meta.title !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.title"></strong> ' + meta.title + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.title"></strong> ' + meta.title + '</p>');
 				}
 				if(meta.altTitle !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.altTitle"></strong> ' + meta.altTitle + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.altTitle"></strong> ' + meta.altTitle + '</p>');
 				}
 				if(meta.author !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.author"></strong> ' + meta.author.join(', ') + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.author"></strong> ' + meta.author.join(', ') + '</p>');
 				}
 				if(meta.publisher !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.publisher"></strong> ' + meta.publisher + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.publisher"></strong> ' + meta.publisher + '</p>');
 				}
 				if(meta.narrator !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.narrator"></strong> ' + meta.narrator + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.narrator"></strong> ' + meta.narrator + '</p>');
 				}
 				if(meta.issued !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong> ' + meta.issued + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong> ' + meta.issued + '</p>');
 				}
 				if(meta.isbn !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.isbn"></strong> ' + meta.isbn + '</p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.isbn"></strong> ' + meta.isbn + '</p>');
 				}
 			}
 			else if(settings.microdata === 1){
 				//microdata for audio book, settings value 1
-				$('.fandango-description').attr({itemscope: '', itemtype: 'http://schema.org/AudioBook'});
+				$('.' + parentSelector + ' .fandango-description').attr({itemscope: '', itemtype: 'http://schema.org/AudioBook'});
 
 				if(meta.title !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.title"></strong><span itemprop="title"> ' + meta.title + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.title"></strong><span itemprop="title"> ' + meta.title + '</span></p>');
 				}
 				if(meta.altTitle !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.altTitle"></strong><span itemprop="alternativeHeadline"> ' + meta.altTitle + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.altTitle"></strong><span itemprop="alternativeHeadline"> ' + meta.altTitle + '</span></p>');
 				}
 				if(meta.author !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.author"></strong><span itemprop="author"> ' + meta.author.join(', ') + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.author"></strong><span itemprop="author"> ' + meta.author.join(', ') + '</span></p>');
 				}
 				if(meta.publisher !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.publisher"></strong><span itemprop="publisher"> ' + meta.publisher + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.publisher"></strong><span itemprop="publisher"> ' + meta.publisher + '</span></p>');
 				}
 				if(meta.narrator !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.narrator"></strong><span itemprop="readBy"> ' + meta.narrator + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.narrator"></strong><span itemprop="readBy"> ' + meta.narrator + '</span></p>');
 				}
 				if(meta.issued !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong><span itemprop="datePublished"> ' + meta.issued + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong><span itemprop="datePublished"> ' + meta.issued + '</span></p>');
 				}
 				if(meta.isbn !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.isbn"></strong><span itemprop="isbn"> ' + meta.isbn + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.isbn"></strong><span itemprop="isbn"> ' + meta.isbn + '</span></p>');
 				}
 			}
 			else if(settings.microdata === 2){
 				//microdata for music album, settings value 2
-				$('.fandango-description').attr({itemscope: '', itemtype: 'http://schema.org/MusicAlbum'});
+				$('.' + parentSelector + ' .fandango-description').attr({itemscope: '', itemtype: 'http://schema.org/MusicAlbum'});
 
 				if(meta.title !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.title"></strong><span itemprop="name"> ' + meta.title + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.title"></strong><span itemprop="name"> ' + meta.title + '</span></p>');
 				}
 				if(meta.author !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.artist"></strong><span itemprop="byartist"> ' + meta.author.join(', ') + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.artist"></strong><span itemprop="byartist"> ' + meta.author.join(', ') + '</span></p>');
 				}
 				if(meta.publisher !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.publisher"></strong><span itemprop="publisher"> ' + meta.publisher + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.publisher"></strong><span itemprop="publisher"> ' + meta.publisher + '</span></p>');
 				}
 				if(meta.issued !== ''){
-					$('.fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong><span itemprop="datePublished"> ' + meta.issued + '</span></p>');
+					$('.' + parentSelector + ' .fandango-description').append('<p><strong data-i18n="description.dateIssued"></strong><span itemprop="datePublished"> ' + meta.issued + '</span></p>');
 				}
 			}
 			else{
 				//invalid value, hide the description container
-				$('.fandango-description').hide();
+				$('.' + parentSelector + ' .fandango-description').hide();
 			}    
 		};
 
 		var createTranscriptionInformation = function(source){
 			var leftPanel = $('.fandango-left-panel');
-			var rightPanel = $('.fandango-transcript');
+			var rightPanel = $('.' + parentSelector + ' .fandango-transcript');
 			rightPanel.css('height', leftPanel.height() - 30);
+			console.log('.' + parentSelector + ' .fandango-left-panel');
 			if(!settings.transcriptContainer) return;
 			$.ajax({url: source}).success(function(data){
                 var parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
@@ -600,24 +603,24 @@
                 };
                 parser.parse(data);
                 parser.flush();
-                $('.fandango-transcript').empty().addClass('hand');
+                $('.' + parentSelector + ' .fandango-transcript').empty().addClass('hand');
                 if(settings.vtt === 1){
 					//show poetry vtt
 					$.each(cues, function(ix, cue){
-						$('.fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span><br />');
+						$('.' + parentSelector + ' .fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span><br />');
 					});
 				}
 				else if(settings.vtt === 2){
 					//show novel vtt
 					$.each(cues, function(ix, cue){
-						$('.fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span>&nbsp;');
+						$('.' + parentSelector + ' .fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span>&nbsp;');
 					});
 				}
 				else{
-					$('.fandango-transcript').append('Error with vtt settings');
+					$('.' + parentSelector + ' .fandango-transcript').append('Error with vtt settings');
 					console.log('VTT setting not in correct format. Must be number 0,1,2 (hidden, poetry, novel)');
 				}
-				$('.fandango-transcript').find('span').unbind('click').click(function(){
+				$('.' + parentSelector + ' .fandango-transcript').find('span').unbind('click').click(function(){
 					var audio = $('.fandango-player').children('audio')[0];
 					if(audio !== null || audio !== undefined){
 						audio.currentTime = parseFloat($(this).attr('data-start'));
@@ -625,19 +628,19 @@
 				});
 
             }).error(function(){
-            	$('.fandango-transcript').hide();
+            	$('.' + parentSelector + ' .fandango-transcript').hide();
             });
 		};
 
 		var createChapterPlaylist = function(){
 			if(!settings.trackContainer) return;
-		    var trackContainer = $('.fandango-playlist');
+		    var trackContainer = $('.' + parentSelector + ' .fandango-playlist');
 		    var list = '';
 		    if(settings.microdata === 1 || settings.microdata === 2){
-		    	list = $('<ol class="tracks" itemscope itemtype="http://schema.org/ItemList"><meta itemprop="name" content="' + meta.title + '" /><meta itemprop="author" content="' + meta.author.join(', ') + '" /><meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" /></ol>');	
+		    	list = $('<ol class="' + parentSelector + ' tracks" itemscope itemtype="http://schema.org/ItemList"><meta itemprop="name" content="' + meta.title + '" /><meta itemprop="author" content="' + meta.author.join(', ') + '" /><meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" /></ol>');	
 		    }
 		    else{
-		    	list = $('<ol class="tracks"></ol>');
+		    	list = $('<ol class="' + parentSelector + ' tracks"></ol>');
 		    }
 		    
 		    trackContainer.append(list);
@@ -652,7 +655,7 @@
                 li.click(function(){
 				    changeSource(source);
 				    createTranscriptionInformation(source.replace('mp3', 'vtt'));
-				    var ol = $('.fandango-playlist' + ' ol.tracks');
+				    var ol = $('.' + parentSelector + ' .fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
 				    active.removeClass('active');
 				    li.addClass('active');
@@ -739,11 +742,11 @@
 
 		var createContainers = function(){
 			var r = $('<div class="row"></div>');
-			var leftContainer = $('<div class="fandango-left-panel col-md-8 col-sm-12"></div>');
-			var rightContainer = $('<div class="fandango-right-panel col-md-4 col-sm-12"></div>');
+			var leftContainer = $('<div class="' + parentSelector + ' fandango-left-panel col-md-8 col-sm-12"></div>');
+			var rightContainer = $('<div class="' + parentSelector + ' fandango-right-panel col-md-4 col-sm-12"></div>');
 			
 			if(settings.transcriptContainer){
-			var $elem = $('<div class="col-md-12 col-sm-12 fandango-transcript-container"><div class="fandango-transcript-autoscroll"><input class="fandango-transcript-autoscroll-control" type="checkbox" unchecked/>Enable auto-scroll</div><div class="fandango-transcript"></div></div>');
+			var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 fandango-transcript-container"><div class="' + parentSelector + ' fandango-transcript-autoscroll"><input class="' + parentSelector + ' fandango-transcript-autoscroll-control" type="checkbox" unchecked/>Enable auto-scroll</div><div class="' + parentSelector + ' fandango-transcript"></div></div>');
 				rightContainer.append($elem);
 			}
 			//generate bootstrap row for cover and description
@@ -751,12 +754,12 @@
 				if(settings.coverContainer && settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
 				if(settings.coverContainer){
-					var $elem = $('<div class="col-md-4 col-sm-4 col-xs-4 fandango-cover"></div>');
+					var $elem = $('<div class="' + parentSelector + ' col-md-4 col-sm-4 col-xs-4 fandango-cover"></div>');
 					$row.append($elem);
 				}
 
 				if(settings.descriptionContainer){
-					var $elem = $('<div class="col-md-8 col-sm-8 col-xs-8 fandango-description"></div>');
+					var $elem = $('<div class="' + parentSelector + ' col-md-8 col-sm-8 col-xs-8 fandango-description"></div>');
 					$row.append($elem);
 				}
 
@@ -765,7 +768,7 @@
 			}
 			else if(!settings.coverContainer && settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
-				var $elem = $('<div class="col-md-12 col-sm-12 col-xs-12 fandango-description"></div>');
+				var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-description"></div>');
 				$row.append($elem);	
 
 				leftContainer.append($row);
@@ -773,7 +776,7 @@
 			}
 			else if(settings.coverContainer && !settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
-				var $elem = $('<div class="col-md-12 col-sm-12 col-xs-12 fandango-cover"></div>');
+				var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-cover"></div>');
 				$row.append($elem);	
 
 				leftContainer.append($row);
@@ -788,8 +791,8 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="col-md-12 col-sm-12 fandango-progress"></div>').append($('<div aria-role="alert" class="col-md-1 col-sm-1 col-xs-1 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
-				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
+				var rowAbove = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 fandango-progress"></div>').append($('<div aria-role="alert" class="' + parentSelector + ' col-md-1 col-sm-1 col-xs-1 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
+				var rowBelow = $('<div class="row"></div>').append($('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
 				parent.appendTo(leftContainer);
@@ -799,8 +802,8 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="col-md-2 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
-				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div aria-role="alert" class="' + parentSelector + ' col-md-2 pull-right fandango-status"><span data-i18n="status.ready"></span></div>'));
+				var rowBelow = $('<div class="row"></div>').append($('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
 				parent.appendTo(leftContainer);
@@ -810,8 +813,8 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="col-md-12 fandango-progress"></div>'));
-				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
+				var rowAbove = $('<div class="row"></div>').appendTo($('<div class="row"></div>')).append($('<div class="' + parentSelector + ' col-md-12 fandango-progress"></div>'));
+				var rowBelow = $('<div class="row"></div>').append($('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
 				rowAbove.appendTo(row);
 				rowBelow.appendTo(row);
 				parent.appendTo(leftContainer);
@@ -821,13 +824,13 @@
 				var parent = $('<div class="row"></div>');
 				var row = $('<div class="col-md-12"></div>');
 				parent.append(row);
-				var rowBelow = $('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
+				var rowBelow = $('<div class="row"></div>').append($('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-player"></div>'));
 				rowBelow.appendTo(row);
 				parent.appendTo(leftContainer);
 			}
 			//generate row for the playlist
 			if(settings.trackContainer){
-				$('<div class="row"></div>').append($('<div class="col-md-12 col-sm-12 col-xs-12 fandango-playlist"></div>')).appendTo(leftContainer);
+				$('<div class="row"></div>').append($('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-playlist"></div>')).appendTo(leftContainer);
 			}
 			r.append(leftContainer);
 			r.append(rightContainer);
@@ -843,6 +846,7 @@
 			//read the dublin core file
 			if(settings.skipDublinCore === true){
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
+				parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
 				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 					if(checkIfNotSupported()){
 						$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
@@ -856,9 +860,9 @@
 					createBookCover();
 					createDescriptionInformation();
 					createChapterPlaylist();
-					$('.fandango-player').i18n();
+					$('.' + parentSelector + ' .fandango-player').i18n();
 					if(!settings.descriptionContainer) return;
-					$('.fandango-description').i18n();
+						$('.' + parentSelector + ' .fandango-description').i18n();
 					openHelpModal();
 					initSpeechRecognition();
 					createAudioPlayer();
@@ -870,6 +874,7 @@
 					dataType: 'xml'
 				}).success(function(data){
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
+					parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
 					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 						if(checkIfNotSupported()){
 							$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
@@ -883,10 +888,10 @@
 						createBookCover();
 						createDescriptionInformation();
 						createChapterPlaylist();
-						$('.fandango-player').i18n();
-						$('.fandango-status').i18n();
+						$('.' + parentSelector + ' .fandango-player').i18n();
+						$('.' + parentSelector + ' .fandango-status').i18n();
 						if(!settings.descriptionContainer) return;
-						$('.fandango-description').i18n();
+							$('.' + parentSelector + ' .fandango-description').i18n();
 						openHelpModal();
 						initSpeechRecognition();
 						createAudioPlayer();
