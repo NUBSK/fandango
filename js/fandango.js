@@ -465,7 +465,7 @@
 			$.each(icons, function(i,e){
 				if(e.label !== 'pause'){
 					if(e.label === 'microphone'){
-						if(window.SpeechRecognition !== null && settings.webAudio === true){
+						if(settings.webAudio === true && annyang){
 							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
 							if(e.position === 'left')
 								var icon = $(elem).click(controlClick).appendTo('.fandango-left-controls');
