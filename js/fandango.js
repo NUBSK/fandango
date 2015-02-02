@@ -95,9 +95,9 @@
     		dataUrl: '',
     		imgUrl : '',
     		skipSeconds: 10,
-    		headMicrodata: true,
+    		headMicrodata: false,
     		lang: '',
-    		fallbackLng: 'mk',
+    		fallbackLng: 'en',
     		webAudio: false,
     		dublinCore: 'dublin_core.xml',
     		skipDublinCore: false,
@@ -758,7 +758,7 @@
 				}
 
 				if(settings.descriptionContainer){
-					var $elem = $('<div class="' + parentSelector + ' col-md-8 col-sm-8 col-xs-8 fandango-description"></div>');
+					var $elem = $('<div class="' + parentSelector + ' col-md-8 col-sm-8 col-xs-8 fandango-description" style="float:left"></div>');
 					$row.append($elem);
 				}
 
@@ -767,7 +767,7 @@
 			}
 			else if(!settings.coverContainer && settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
-				var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-description"></div>');
+				var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 col-xs-12 fandango-description" style="float:left"></div>');
 				$row.append($elem);	
 
 				leftContainer.append($row);
