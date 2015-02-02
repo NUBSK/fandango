@@ -593,7 +593,6 @@
 			var leftPanel = $('.fandango-left-panel');
 			var rightPanel = $('.' + parentSelector + ' .fandango-transcript');
 			rightPanel.css('height', leftPanel.height() - 30);
-			console.log('.' + parentSelector + ' .fandango-left-panel');
 			if(!settings.transcriptContainer) return;
 			$.ajax({url: source}).success(function(data){
                 var parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
@@ -861,7 +860,7 @@
 					createDescriptionInformation();
 					createChapterPlaylist();
 					$('.' + parentSelector + ' .fandango-player').i18n();
-					if(!settings.descriptionContainer) return;
+					if(settings.descriptionContainer)
 						$('.' + parentSelector + ' .fandango-description').i18n();
 					openHelpModal();
 					initSpeechRecognition();
@@ -890,7 +889,7 @@
 						createChapterPlaylist();
 						$('.' + parentSelector + ' .fandango-player').i18n();
 						$('.' + parentSelector + ' .fandango-status').i18n();
-						if(!settings.descriptionContainer) return;
+						if(settings.descriptionContainer)
 							$('.' + parentSelector + ' .fandango-description').i18n();
 						openHelpModal();
 						initSpeechRecognition();
