@@ -79,10 +79,10 @@
             </div>
         </div>
     </div>
-    <div class="content-section-b main" role="main">
+    <div class="content-section-b main" role="main" style="background:#000;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-10 col-md-offset-2">
                     <div role="region" aria-label="audio player" class="player">
                     </div>
                 </div>
@@ -158,22 +158,29 @@
             </div>
         </div>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/jquery.hotkeys.js"></script>
-    <script type="text/javascript" src="../js/jquery.xml2json.js"></script>
-    <script type="text/javascript" src="../js/vtt.js"></script>
     <script type="text/javascript" src="../js/i18next-1.7.7.min.js"></script>
     <script type="text/javascript" src="../js/fandango.js"></script>
     <!-- activate the plugin -->
     <script type="text/javascript">
         $(document).ready(function(){
             var player = $('.player').fandango({
-                vtt: 2,
-                microdata: 2,
-                dublinCore: '../books/book2/dublin_core.xml',
-                imgUrl : '../books/book2/thumb.jpg',
-                dataUrl:'../books/book2/000'
+                vtt: 0,
+                microdata:0,
+                descriptionContainer: false,
+                transcriptContainer: false,
+                coverContainer:false,
+                skipDublinCore:true,
+                metadata: {
+                    title:'MyPlaylist',
+                    author:['Various Artist'],
+                    toc: ['Hot Day In Mexico - Foltin','Elena - Muhamed Ibrahimi','The End - Bei The Fish','Honey Lips - Tempera'],
+                    source: ['../music/Foltin-Hot_Day_In_Mexico-001.mp3','../music/Muhamed_Ibrahimi-Elena-001.mp3','../music/Bei_The_Fish-The-End.mp3','../music/Tempera-Honey_lips.mp3'],
+                    vttSource:[]
+                }
             });
         });
     </script>
