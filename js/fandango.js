@@ -97,7 +97,7 @@
     		skipSeconds: 10,
     		headMicrodata: false,
     		lang: '',
-    		fallbackLng: 'en',
+    		fallbackLng: 'mk',
     		webAudio: false,
     		dublinCore: 'dublin_core.xml',
     		skipDublinCore: false,
@@ -468,7 +468,7 @@
 				if(e.label !== 'pause'){
 					if(e.label === 'microphone'){
 						if(settings.webAudio === true && annyang){
-							var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+							var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 							if(e.position === 'left')
 								var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 							else
@@ -476,14 +476,14 @@
 						}
 					}
 					else if(e.label === 'question-sign'){
-						var elem = '<button data-toggle="modal" data-target="' + parentSelector + '-fandango-help" aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						var elem = '<button data-toggle="modal" data-target="' + parentSelector + '-fandango-help" aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 						if(e.position === 'left')
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector +' .fandango-right-controls');
 					}
 					else{
-						var elem = '<button aria-pressed="false" data-i18n="[title]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"></button>';
+						var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 						if(e.position === 'left')
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
@@ -758,7 +758,7 @@
 				}
 
 				if(settings.descriptionContainer){
-					var $elem = $('<div class="' + parentSelector + ' col-md-8 col-sm-8 col-xs-8 fandango-description" style="float:left"></div>');
+					var $elem = $('<div class="' + parentSelector + ' col-md-8 col-sm-8 col-xs-8 fandango-description"></div>');
 					$row.append($elem);
 				}
 
@@ -846,7 +846,7 @@
 			if(settings.skipDublinCore === true){
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 				parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
-				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+				$.i18n.init({load: 'current', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 					if(checkIfNotSupported()){
 						$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
 						return;
@@ -874,7 +874,7 @@
 				}).success(function(data){
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 					parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
-					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+					$.i18n.init({load: 'current', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 						if(checkIfNotSupported()){
 							$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
 							return;
@@ -906,4 +906,4 @@
 
 		return this;
 	};
-}(jQuery)); 
+}(jQuery));
