@@ -424,11 +424,11 @@
 			var cues = [];
 			var checkbox = $('.' + parentSelector + ' .fandango-transcript-autoscroll-control');
 			if(settings.vtt === 1){
-				// poetry
+				// novel
 				var cues = $('.' + parentSelector + ' .fandango-transcript').find('span');
 			}
 			else if(settings.vtt === 2){
-				// novel
+				// poertry
 				var cues = $('.' + parentSelector + ' .fandango-transcript').find('span');
 			}
 			
@@ -604,15 +604,15 @@
                 parser.flush();
                 $('.' + parentSelector + ' .fandango-transcript').empty().addClass('hand');
                 if(settings.vtt === 1){
-					//show poetry vtt
-					$.each(cues, function(ix, cue){
-						$('.' + parentSelector + ' .fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span><br />');
-					});
-				}
-				else if(settings.vtt === 2){
 					//show novel vtt
 					$.each(cues, function(ix, cue){
 						$('.' + parentSelector + ' .fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span>&nbsp;');
+					});
+				}
+				else if(settings.vtt === 2){
+					//show poetry vtt
+					$.each(cues, function(ix, cue){
+						$('.' + parentSelector + ' .fandango-transcript').append('<span data-start="' + cue.startTime + '" data-end="' + cue.endTime + '">' + cue.text + '</span><br />');
 					});
 				}
 				else{
