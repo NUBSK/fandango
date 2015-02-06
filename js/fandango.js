@@ -667,7 +667,8 @@
 			$.each(settings.shortcuts, function(command, shortcut){
 				$(document).bind('keyup', shortcut.trim(), function(){ self.action(command); return false; })
 					.bind('keyup', 'shift+' + shortcut.trim(), function(){ self.action(command); return false; })
-					.bind('keyup', 'alt+' + shortcut.trim(), function(){ self.action(command); return false; });
+					.bind('keyup', 'alt+' + shortcut.trim(), function(){ self.action(command); return false; })
+					.bind('keyup', 'alt+shift+' + shortcut.trim(), function(){ self.action(command); return false; });
 			});
 		};
 
