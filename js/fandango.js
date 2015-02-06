@@ -228,13 +228,15 @@
 				    createTranscriptionInformation(meta.vttSource[nextPos]);
 					break;
 				case 'prevTrack': 
+					if(meta.source.length === 1) break;
 				    $('.' + parentSelector + ' .icon-fast-backward').addClass('icon-hover').removeClass('icon-hover');
 				    var ol = $('.fandango-playlist' + ' ol.tracks');
 				    var active = $(ol.children('li.active')[0]);
 				    var pos = parseInt(active.attr('data-pos'));
 				    var prevPos = pos - 1;
-				    if (pos == 0) {
+				    if (pos === 0) {
 				        prevPos = meta.source.length - 1;
+				        console.log(meta.source.length - 1);
 				    }
 				    active.removeClass('active');
 				    var prevTrack = $(ol.children('li[data-pos=' + prevPos + ']')[0]);
@@ -399,7 +401,7 @@
 			var dTime = (dMinutes < 10 ? "0" + dMinutes : dMinutes) + ":" + (dSeconds  < 10 ? "0" + dSeconds : dSeconds);
 
 			var progressBar = $('.' + parentSelector + ' .fandango-progressbar-slider');
-			
+
 			slider = $(progressBar).slider({
 				min: 0,
 				max: duration,
@@ -457,6 +459,10 @@
 			$(nativeAudioElem).on('timeupdate', updateTime);
 			$(nativeAudioElem).on('ended', trackEndedEvent);
 			$(nativeAudioElem).on('loadedmetadata', audioLoadedMetadata);
+
+			var ol = $('.' + parentSelector + ' .fandango-playlist' + ' ol.tracks');
+			
+			$(ol.children('li')[0]).addClass('active');
 			createTranscriptionInformation(meta.vttSource[0]);
 		};
 
