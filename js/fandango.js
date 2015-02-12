@@ -101,6 +101,7 @@
     		webAudio: false,
     		dublinCore: 'dublin_core.xml',
     		skipDublinCore: false,
+    		webAudioLang: 'en-GB',
     		metadata:{
 				title: '',
 				altTitle: '',
@@ -284,6 +285,7 @@
 					commands[i18n.t('audioCommands.help')] = function(){self.action('help')};
 					commands[i18n.t('audioCommands.listen')] = function(){self.action('listen')};
 					annyang.addCommands(commands);
+					annyang.setLanguage(settings.webAudioLang);
 				}
 			}
 		};
@@ -853,9 +855,9 @@
 			if(settings.skipDublinCore === true){
 				var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 				parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
-				$.i18n.init({load: 'current', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+				$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 					if(checkIfNotSupported()){
-						$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
+						$('.player').append('<p class="alert alert-danger"><strong>' + i18n.t('errors.playerNotSupported') + '</strong></p>');
 						return;
 					}
 					self.empty();
@@ -867,6 +869,7 @@
 					createDescriptionInformation();
 					createChapterPlaylist();
 					$('.' + parentSelector + ' .fandango-player').i18n();
+					$('.' + parentSelector + ' .fandango-status').i18n();
 					if(settings.descriptionContainer)
 						$('.' + parentSelector + ' .fandango-description').i18n();
 					openHelpModal();
@@ -881,9 +884,9 @@
 				}).success(function(data){
 					var lng = settings.lang === '' ? window.navigator.language : settings.lang; 
 					parentSelector = self.attr('class') + '-' + Math.floor(Math.random() * 100) + 1;
-					$.i18n.init({load: 'current', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
+					$.i18n.init({load: 'unspecific', lng: lng, resGetPath:'../translations/__lng__.json', fallbackLng: settings.fallbackLng}, function(){
 						if(checkIfNotSupported()){
-							$('.player').append('<p class="alert alert-danger"><strong>' + i18n('errors.playerNotSupported') + '</strong></p>');
+							$('.player').append('<p class="alert alert-danger"><strong>' + i18n.t('errors.playerNotSupported') + '</strong></p>');
 							return;
 						}
 						self.empty();
