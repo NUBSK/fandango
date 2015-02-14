@@ -324,7 +324,7 @@
 	        		'<div class="modal-dialog">' +
 						'<div class="modal-content">' +
 							'<div class="modal-header">' +
-								'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+								'<button role="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
 								'<h4 class="modal-title">' + i18n.t('modal.needHelp') + '</h4>' +
 							'</div>' +
 							'<div class="modal-body">' +
@@ -333,7 +333,7 @@
 								modalDOM += '<span><strong>' + i18n.t('playerButtons.' + key) + ': ' + shortcut + '</strong></span><br />';
 							});
 							modalDOM+='</div>' +
-							'<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>' +
+							'<div class="modal-footer"><button role="button" class="btn btn-default" data-dismiss="modal">Close</button></div>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
@@ -476,7 +476,7 @@
 				if(e.label !== 'pause'){
 					if(e.label === 'microphone'){
 						if(settings.webAudio === true && annyang){
-							var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
+							var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" role="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 							if(e.position === 'left')
 								var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 							else
@@ -484,14 +484,14 @@
 						}
 					}
 					else if(e.label === 'question-sign'){
-						var elem = '<button data-toggle="modal" data-target="' + parentSelector + '-fandango-help" aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
+						var elem = '<button data-toggle="modal" data-target="' + parentSelector + '-fandango-help" aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" role="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 						if(e.position === 'left')
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector +' .fandango-right-controls');
 					}
 					else{
-						var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" type="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
+						var elem = '<button aria-pressed="false" data-i18n="[aria-label]playerButtons.' + controls[i] +'" role="button" tabindex="0" class="' + parentSelector + ' icon icon-' + e.label + '" data-control="' + controls[i] + '"><span aria-hidden="true"></span></button>';
 						if(e.position === 'left')
 							var icon = $(elem).click(controlClick).appendTo('.'+parentSelector + ' .fandango-left-controls');
 						else
@@ -757,8 +757,11 @@
 			var $elem = $('<div class="' + parentSelector + ' col-md-12 col-sm-12 fandango-transcript-container"><div class="' + parentSelector + ' fandango-transcript-autoscroll"><input class="' + parentSelector + ' fandango-transcript-autoscroll-control" type="checkbox" unchecked/>Enable auto-scroll</div><div class="' + parentSelector + ' fandango-transcript"></div></div>');
 				rightContainer.append($elem);
 			}
+			else if (!settings.transcriptContainer) {
+				leftContainer.removeClass('col-md-8').addClass('col-md-12')
+				rightContainer.hide();
+			};
 			//generate bootstrap row for cover and description
-			// if(settings.coverContainer || settings.descriptionContainer){
 				if(settings.coverContainer && settings.descriptionContainer){
 				var $row = $('<div class="row"></div>');
 				if(settings.coverContainer){
