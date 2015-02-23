@@ -4,13 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Accessible jQuery audio player. HTML5 native with responsive design and flash fallback.">
+    <meta name="description" content="Accessible jQuery audio player. HTML5 native with responsive design and flash fallback.">s
     <meta name="keywords" content="Fandango, html5 audio player, player with transcription, vtt, jquery, responsive audio player, metadata, microdata, Dublin Core">
-    <title>Dark Theme | Fandango Audio Player</title>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/smoothness/jquery-ui.css" />
+    <title>Web Audio API | Fandango Audio Player</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
-    <link href="../css/dark.css" rel="stylesheet">
+    <link href="../css/light.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
@@ -40,6 +39,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a href="../">Home</a>
+                    </li>
+                    <li>
                         <a class="current" href="../examples.html">Examples</a>
                     </li>
                     <li>
@@ -47,9 +49,6 @@
                     </li>
                     <li>
                         <a href="../api.html">API</a>
-                    </li>
-                    <li>
-                        <a href="../resources.html">Resources</a>
                     </li>
                     <li class="share">
                         <span class="share st_sharethis_custom">SHARE</span>
@@ -62,7 +61,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>DARK THEME</h1>
+                    <h1>WEB AUDIO API</h1>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs pull-right">
@@ -74,7 +73,7 @@
                             <a href="../examples.html" >Examples</a>
                             <span class="divider"> / </span>
                         </li>
-                        <li class="active">Dark theme</li>
+                        <li class="active">Web Audio API</li>
                     </ul>
                 </div>
             </div>
@@ -83,9 +82,14 @@
     <div class="content-section-b main" role="main" style="background:#000;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div role="region" aria-label="audio player" class="player">
+                <div class="col-md-10 col-md-offset-2">
+                    <div class="player">
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="alert alert-warning" style="margin-top:2em;">
+                  <strong>DISCLAIMER:</strong>  We do not own any music, audio books or cover artwork presented on this page. Artwork and audio files are subject to copyright and belongs to their respectful owners. These materials are for demonstration purposes of the Fandango audio player and are not included in the source code distribution.
                 </div>
             </div>
         </div>
@@ -149,10 +153,6 @@
                         <li>
                             <a href="../api.html">API</a>
                         </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="../resources.html">Resources</a>
-                        </li>
                     </ul>
                     <p class="copyright text-muted small">Copyright &copy; <a href="http://nubsk.edu.mk" title="National and University Library St. Clement of Ohrid - Macedonia" target="_blank">National and University Library St. Clement of Ohrid - Macedonia</a> 2014. All Rights Reserved<br/><a href="http://www.dlib.mk" title="Digital Library of Macedonia" target="_blank">Digital Library of Macedonia</a></p>
                 </div>
@@ -164,20 +164,26 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.4.0/annyang.min.js"></script>
     <script type="text/javascript" src="../js/jquery.hotkeys.js"></script>
-    <script type="text/javascript" src="../js/jquery.xml2json.js"></script>
-    <script type="text/javascript" src="../js/jquery.scrollTo.js"></script>
-    <script type="text/javascript" src="../js/vtt.js"></script>
     <script type="text/javascript" src="../js/i18next-1.7.7.min.js"></script>
     <script type="text/javascript" src="../js/fandango.js"></script>
     <!-- activate the plugin -->
     <script type="text/javascript">
         $(document).ready(function(){
             var player = $('.player').fandango({
-                vtt: 2,
-                microdata: 1,
-                dublinCore: '../books/book1/dublin_core.xml',
-                imgUrl : '../books/book1/thumb.jpg',
-                dataUrl:'../books/book1/000'
+                vtt: 0,
+                microdata:0,
+                descriptionContainer: false,
+                transcriptContainer: false,
+                coverContainer:false,
+                skipDublinCore:true,
+                webAudio: true,
+                metadata: {
+                    title:'MyPlaylist',
+                    author:['Various Artist'],
+                    toc: ['Hot Day In Mexico - Foltin','Elena - Muhamed Ibrahimi','The End - Bei The Fish','Honey Lips - Tempera'],
+                    source: ['http://nubsk.edu.mk/fandango/music/Foltin-Hot_Day_In_Mexico-001.mp3','http://nubsk.edu.mk/fandango/music/Muhamed_Ibrahimi-Elena-001.mp3','http://nubsk.edu.mk/fandango/music/Bei_The_Fish-The-End.mp3','http://nubsk.edu.mk/fandango/music/tempera/honey-lips-001.mp3'],
+                    vttSource:[]
+                }
             });
         });
     </script>

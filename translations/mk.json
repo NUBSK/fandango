@@ -1,4 +1,7 @@
 {
+	"errors":{
+		"playerNotSupported": "Користите пребарувач кој што не е поддржан!"
+		},
 	"description": {
 		"title": "Наслов:",
 		"altTitle": "Алтернативен наслов:",
@@ -6,7 +9,8 @@
 		"publisher": "Издавач:",
 		"narrator": "Наратор:",
 		"dateIssued": "Дата на издавање:",
-		"isbn": "ISBN:"
+		"isbn": "ISBN:",
+		"artist": "Изведувач"
 	},
 	"playerButtons":{
 		"play":"Пушти",
@@ -24,6 +28,28 @@
 	},
 	"modal":{
 		"needHelp": "Треба помош?",
-		"shortcuts": "Кратенки:"
+		"shortcuts": "Кратенки:",
+		"description": "Сите кратенки на тастатура работат со било која нивна комбинација со копчињата 'ALT' или 'SHIFT'."
+	},
+	"audioCommands": {
+		"play":"Пушти",
+		"pause":"Паузирај",
+		"stop":"Стопирај",
+		"prevTrack":"Претходно",
+		"nextTrack":"Следно",
+		"rewind":"Назад",
+		"forward":"Напред",
+		"volumeUp":"Зголеми глас",
+		"volumeDown":"Намали глас",
+		"mute":"Исклучи глас",
+		"help":"Помош",
+		"listen": "Говорни команди"
+	},
+	"status": {
+		"play": "Пуштено",
+		"stop": "Стопирано",
+		"pause": "Паузирано",
+		"mute": "Без глас",
+		"ready": "Спремно"
 	}
 }

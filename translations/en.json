@@ -1,4 +1,7 @@
 {
+	"errors":{
+		"playerNotSupported": "You are using outdated browser that is no longer supported!"
+	},
 	"description": {
 		"title": "Title:",
 		"altTitle": "Alternative title:",
@@ -6,7 +9,8 @@
 		"publisher": "Publisher:",
 		"narrator": "Narrator:",
 		"dateIssued": "Date issued:",
-		"isbn": "ISBN:"
+		"isbn": "ISBN:",
+		"artist": "Artist"
 	},
 	"playerButtons":{
 		"play":"Play",
@@ -24,6 +28,28 @@
 	},
 	"modal":{
 		"needHelp": "Need help?",
-		"shortcuts": "Shortcuts:"
+		"shortcuts": "Shortcuts:",
+		"description": "All keyborad shortcuts also work with combination of either 'ALT' or 'SHIFT' keys."
+	},
+	"audioCommands": {
+		"play":"Play",
+		"pause":"Pause",
+		"stop":"Stop",
+		"prevTrack":"Previous",
+		"nextTrack":"Next",
+		"rewind":"Back",
+		"forward":"Forward",
+		"volumeUp":"Volume up",
+		"volumeDown":"Volume down",
+		"mute":"Mute",
+		"help":"Help",
+		"listen": "Speak commands"
+	},
+	"status": {
+		"play": "Playing",
+		"stop": "Stopped",
+		"pause": "Paused",
+		"mute": "Muted",
+		"ready": "Waiting"
 	}
 }
