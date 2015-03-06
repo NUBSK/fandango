@@ -10,7 +10,7 @@
 		"narrator": "Narrator:",
 		"dateIssued": "Date issued:",
 		"isbn": "ISBN:",
-		"artist": "Artist"
+		"artist": "Artist:"
 	},
 	"playerButtons":{
 		"play":"Play",
@@ -28,8 +28,8 @@
 	},
 	"modal":{
 		"needHelp": "Need help?",
-		"shortcuts": "Shortcuts:",
-		"description": "All keyborad shortcuts also work with combination of either 'ALT' or 'SHIFT' keys."
+		"shortcuts": "Keyboard Shortcuts",
+		"description": "All keyboard shortcuts also work with 'ALT' or 'SHIFT' keys or a combination of both 'ALT + SHIFT'."
 	},
 	"audioCommands": {
 		"play":"Play",
@@ -43,7 +43,7 @@
 		"volumeDown":"Volume down",
 		"mute":"Mute",
 		"help":"Help",
-		"listen": "Speak commands"
+		"listen": "Voice commands"
 	},
 	"status": {
 		"play": "Playing",
@@ -51,5 +51,8 @@
 		"pause": "Paused",
 		"mute": "Muted",
 		"ready": "Waiting"
+	},
+	"transcript": {
+		"scroll":"Enable auto-scroll"
 	}
 }
