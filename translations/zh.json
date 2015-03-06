@@ -1,0 +1,58 @@
+{
+	"errors":{
+		"playerNotSupported": "您使用的过期浏览器不被支持"
+	},
+	"description": {
+		"title": "标题:",
+		"altTitle": "替代标题:",
+		"author": "作者:",
+		"publisher": "出版社:",
+		"narrator": "解说员:",
+		"dateIssued": "出版日期:",
+		"isbn": "ISBN:",
+		"artist": "艺术家:"
+	},
+	"playerButtons":{
+		"play":"播放",
+		"pause":"暂停",
+		"stop":"停止",
+		"prevTrack":"上一页",
+		"nextTrack":"下一页",
+		"rewind":"返回",
+		"forward":"往前",
+		"volumeUp":"声调升",
+		"volumeDown":"声调降",
+		"mute":"静音",
+		"help":"帮助",
+		"listen": "语音命令"
+	},
+	"modal":{
+		"needHelp": "需要帮助?",
+		"shortcuts": "快捷键:",
+		"description": "所有快捷键都要与ALT键或SHIFT键，或ALT+SHIFT键同时使用"
+	},
+	"audioCommands": {
+		"play":"播放",
+		"pause":"暂停",
+		"stop":"停止",
+		"prevTrack":"上一页",
+		"nextTrack":"下一页",
+		"rewind":"返回",
+		"forward":"往前",
+		"volumeUp":"声调升",
+		"volumeDown":"声调降",
+		"mute":"静音",
+		"help":"帮助",
+		"listen": "语音命令"
+	},
+	"status": {
+		"play": "正在播放",
+		"stop": "已停止",
+		"pause": "已暂停",
+		"mute": "已静音",
+		"ready": "准备"
+	},
+	"transcript": {
+		"scroll":"启用自动滚动"
+	}
+}
