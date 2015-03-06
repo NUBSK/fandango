@@ -1,0 +1,58 @@
+{
+	"errors":{
+		"playerNotSupported": "Ju jeni duke përdorur shfletuesin që nuk është më i mbështetur!"
+	},
+	"description": {
+		"title": "Titull:",
+		"altTitle": "Titilli Alternativ:",
+		"author": "Autor:",
+		"publisher": "Botues:",
+		"narrator": "Folës:",
+		"dateIssued": "Data e lëshuar:",
+		"isbn": "ISBN:",
+		"artist": "Interpretues:"
+	},
+	"playerButtons":{
+		"play":"Lësho",
+		"pause":"Pauzë",
+		"stop":"Ndalo",
+		"prevTrack":"I mëparshëm",
+		"nextTrack":"Tjetra",
+		"rewind":"Mbrapa",
+		"forward":"Përpara",
+		"volumeUp":"Zmadhoje zërin",
+		"volumeDown":"Zvogloje zërin",
+		"mute":"Ndalo zërin",
+		"help":"Ndihmë",
+		"listen": "Komandat e zërit"
+	},
+	"modal":{
+		"needHelp": "Nevojë për ndihmë?",
+		"shortcuts": "Shkurtesat:",
+		"description": "Të gjitha shkurtesat e tastierës gjithashtu punojnë edhe me 'ALT' ose  'Shift' sustat ose një kombinim i të dy 'ALT + SHIFT'."
+	},
+	"audioCommands": {
+		"play":"Lësho",
+		"pause":"Pauzë",
+		"stop":"Ndalo",
+		"prevTrack":"I mëparshëm",
+		"nextTrack":"Tjetra",
+		"rewind":"Mbrapa",
+		"forward":"Përpara",
+		"volumeUp":"Zmadhoje zërin",
+		"volumeDown":"Zvogloje zërin",
+		"mute":"Ndalo zërin",
+		"help":"Ndihmë",
+		"listen": "Komandat e zërit"
+	},
+	"status": {
+		"play": "Lëshuar",
+		"stop": "Ndaluar",
+		"pause": "Pushuar",
+		"mute": "Pa zë",
+		"ready": "Gati"
+	},
+	"transcript": {
+		"scroll":"Mundësuar rrotull-auto"
+	}
+}

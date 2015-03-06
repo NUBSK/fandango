@@ -1,0 +1,58 @@
+{
+	"errors":{
+		"playerNotSupported": "Du måste uppdatera din webbläsare!"
+	},
+	"description": {
+		"title": "Titel:",
+		"altTitle": "Alternativ titel:",
+		"author": "Författare:",
+		"publisher": "Publisist:",
+		"narrator": "Berättare:",
+		"dateIssued": "Utgivningsår:",
+		"isbn": "ISBN:",
+		"artist": "Artist:"
+	},
+	"playerButtons":{
+		"play":"Spela",
+		"pause":"Paus",
+		"stop":"Stopp",
+		"prevTrack":"Föregående",
+		"nextTrack":"Nästa",
+		"rewind":"Bakåt",
+		"forward":"Framåt",
+		"volumeUp":"Volym upp",
+		"volumeDown":"Volym ned",
+		"mute":"Tyst",
+		"help":"Hjälp",
+		"listen": "Röststyrning"
+	},
+	"modal":{
+		"needHelp": "Hjälp?",
+		"shortcuts": "Kortkommandon",
+		"description": "Alla kortkommandon fungerar även med 'ALT' eller 'SHIFT' eller i kombination av 'ALT + SHIFT'."
+	},
+	"audioCommands": {
+		"play":"Spela",
+		"pause":"Paus",
+		"stop":"Stopp",
+		"prevTrack":"Föregående",
+		"nextTrack":"Nästa",
+		"rewind":"Bakåt",
+		"forward":"Framåt",
+		"volumeUp":"Volume upp",
+		"volumeDown":"Volume ned",
+		"mute":"Tyst",
+		"help":"Hjälp",
+		"listen": "Röststyrning"
+	},
+	"status": {
+		"play": "Spelar",
+		"stop": "Stoppad",
+		"pause": "Pausad",
+		"mute": "Tyst",
+		"redo": "Väntar"
+	},
+	"transcript": {
+		"scroll":"Automatisk scrollning"
+	}
+}

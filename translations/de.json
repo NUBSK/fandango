@@ -1,0 +1,58 @@
+{
+	"errors":{
+		"playerNotSupported": "Der Player ist nicht unterstützt!"
+	},
+	"description": {
+		"title": "Titel:",
+		"altTitle": "Alternativer Titel:",
+		"author": "Verfasser:",
+		"publisher": "Verleger:",
+		"narrator": "Narrator:",
+		"dateIssued": "Erzähler:",
+		"isbn": "ISBN:",
+		"artist": "Interpret:"
+	},
+	"playerButtons":{
+		"play":"Abspielen",
+		"pause":"Pause",
+		"stop":"Stopp",
+		"prevTrack":"vorheriger Titel",
+		"nextTrack":"nächster Titel",
+		"rewind":"zurück",
+		"forward":"vorwärts",
+		"volumeUp":"Lautstärke hoch",
+		"volumeDown":"Lautstärke runter",
+		"mute":"stumm",
+		"help":"Hilfe",
+		"listen": "Hören"
+	},
+	"modal":{
+		"needHelp": "Hilfe",
+		"shortcuts": "Kürzungen:",
+		"description": "Alle Kürzungen können sich zusammen mit 'ALT' oder 'SHIFT' Tasten nutzen oder in der Kombination mit den beiden Tasten 'ALT + SHIFT'."
+	},
+	"audioCommands": {
+		"play":"Abspielen",
+		"pause":"Pause",
+		"stop":"Stopp",
+		"prevTrack":"vorheriger Titel",
+		"nextTrack":"nächster Titel",
+		"rewind":"zurück",
+		"forward":"vorwärts",
+		"volumeUp":"Lautstärke hoch",
+		"volumeDown":"Lautstärke runter",
+		"mute":"stumm",
+		"help":"Hilfe",
+		"listen": "Hören"
+	},
+	"status": {
+		"play": "Abspielen",
+		"stop": "Stopp",
+		"pause": "Pause",
+		"mute": "stumm",
+		"ready": "bereit"
+	},
+	"transcript": {
+		"scroll":"Bild rollen"
+	}
+}
